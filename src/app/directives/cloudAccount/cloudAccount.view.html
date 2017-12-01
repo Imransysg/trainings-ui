@@ -1,0 +1,142 @@
+﻿<div class="cloud_account">
+    <div class="know_more_row"><span class="know_more right cursor-pointer" ng-click="helpSection('cloudAccount');"><i class="material-icons">info_outline</i>&nbsp;<b>Help</b></span>
+        <div class="clearfix"></div>
+    </div>
+    <div class="cloud_account_nav">
+        <div class="create_trial_block" ng-click="showCloudAccountFormFn()" layout-align="center center" layout="column">
+            <i class="material-icons">add</i>
+            <p class="text-uppercase">Link new account</p>
+        </div>
+        <div class="create_trial_block cloud_tile" layout-align="center center" layout="column" ng-repeat="savedCloud in providerArray" ng-click="selectCloudAccount(savedCloud)">
+            <img src="../../../img/oracle.png" height="50px" width="99%" />
+            <p class="text-uppercase">{{savedCloud.provider_details.accountName | ellipsis:12:'...'}}</p>
+            <div class="selected_cloud_acc">
+                <img ng-if="cloudProvider.provider_account_id===savedCloud.provider_id" src="../../../img/tick_icon.png" width="40px" height="40px" />
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <form novalidate name="cloudAccountForm" autocomplete="off" ng-submit="cloudAccountForm.$valid && saveCloudAccount()" ng-show="cloudAcc.showCloudAccountForm">
+        <div class="signup_form">
+            <div class="signup_form_main">
+                <div class="create_new_cloud_header">
+                    <h4>Link a new cloud account to the demo lab</h4>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="signup_main_row position-relative noPadding">
+                    <div class="signup_row">
+                        <md-input-container class="md-block signup_row paddingLeft">
+                            <label>Account Name</label>
+                            <input type="text" name="accountName" ng-model="providerDetails.accountName" placeholder="Enter your cloud account name..." required />
+                            <div ng-messages="cloudAccountForm.accountName.$error" ng-if="cloudAccountForm.accountName.$touched">
+                                <div ng-message="required">This field is required</div>
+                            </div>
+                        </md-input-container>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="signup_row">
+                        <md-input-container class="md-block signup_row paddingLeft">
+                            <label>Account Description</label>
+                            <input type="text" name="accountDescription" ng-model="providerDetails.accountDesc" placeholder="Enter the description of your cloud account..." required />
+                            <div ng-messages="cloudAccountForm.accountDescription.$error" ng-if="cloudAccountForm.accountDescription.$touched">
+                                <div ng-message="required">This field is required</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div class="signup_row">
+                        <md-input-container class="md-block signup_col paddingLeft">
+                            <label>Tenancy OCID</label>
+                            <input type="text" name="tenancyOcid" ng-model="providerDetails.tenancy_OCID" ng-pattern="/^(ocid[\w .]+)[\w .]+$/" placeholder="Enter tenancy id here..." required />
+                            <div ng-messages="cloudAccountForm.tenancyOcid.$error" ng-if="cloudAccountForm.tenancyOcid.$touched">
+                                <div ng-message="required">This field is required</div>
+                                <div ng-message="pattern">It should be valid OCID</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-block signup_col paddingRight">
+                            <label>User OCID</label>
+                            <input type="text" name="userOcid" ng-model="providerDetails.user_OCID" ng-pattern="/^(ocid[\w .]+)[\w .]+$/" placeholder="Enter user id here..." required />
+                            <div ng-messages="cloudAccountForm.userOcid.$error" ng-if="cloudAccountForm.userOcid.$touched">
+                                <div ng-message="required">This field is required</div>
+                                <div ng-message="pattern">It should be valid OCID</div>
+                            </div>
+                        </md-input-container>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="signup_row">
+                        <md-input-container class="md-block signup_col paddingLeft">
+                            <label>Compartment OCID</label>
+                            <input type="text" name="compartmentOcid" ng-model="providerDetails.compartment_OCID" ng-pattern="/^(ocid[\w .]+)[\w .]+$/" placeholder="Enter compartment id here..." required />
+                            <div ng-messages="cloudAccountForm.compartmentOcid.$error" ng-if="cloudAccountForm.compartmentOcid.$touched">
+                                <div ng-message="required">This field is required</div>
+                                <div ng-message="pattern">It should be valid OCID</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-block signup_col paddingRight">
+                            <label>Fingerprint</label>
+                            <input type="text" name="fingerprint" ng-model="providerDetails.fingerprint" ng-pattern="/^([a-z A-Z 0-9]{2,}:)+([a-z A-Z 0-9]{2,})$/" placeholder="Enter fingerprint here..." required />
+                            <div ng-messages="cloudAccountForm.fingerprint.$error" ng-if="cloudAccountForm.fingerprint.$touched">
+                                <div ng-message="required">This field is required</div>
+                                <div ng-message="pattern">It should be valid fingerprint</div>
+                            </div>
+                        </md-input-container>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="signup_row">
+                        <md-input-container class="md-block">
+                            <label>Private Key</label>
+                            <textarea name="privateKeyPath" ng-model="providerDetails.private_Key_Path" placeholder="Enter private key here..." required rows="3" md-select-on-focus></textarea>
+                            <div ng-messages="cloudAccountForm.privateKeyPath.$error" ng-if="cloudAccountForm.privateKeyPath.$touched">
+                                <div ng-message="required">This field is required</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div class="signup_row">
+                        <div class="project_creation_buttons right">
+                            <md-button id="idPrvCreate" type="submit" class="cc-button button-secondary text-uppercase right marginRight" ng-disabled="cloudAccountForm.$invalid" aria-label="save">
+                                <md-tooltip md-direction="top">Save</md-tooltip>
+                                Save
+                            </md-button>
+                            <md-button class="button-default text-uppercase right" ng-click="hideCloudAccountFormFn()" aria-label="cancel">
+                                <md-tooltip md-direction="top">Cancel</md-tooltip>
+                                Cancel
+                            </md-button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!-- fields for Azure cloud starts which might be needed later -->
+                    <!-- <div class="signup_row" ng-if="cloudAccountFormFields.cloudProvider == 'Azure'">
+                        <md-input-container class="md-block signup_col paddingLeft">
+                            <label>Azure User ID</label>
+                            <input type="text" name="azureUserId" ng-model="cloudAccountFormFields.azureUserId" placeholder="Enter user id here..." required />
+                            <div ng-messages="cloudAccountForm.azureUserId.$error">
+                                <div ng-message="required">This field is required</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-block signup_col paddingRight">
+                            <label>Azure Fingerprint</label>
+                            <input type="text" name="azureFingerprint" ng-model="cloudAccountFormFields.azureFingerprint" placeholder="Enter fingerprint here..." required />
+                            <div ng-messages="cloudAccountForm.azureFingerprint.$error">
+                                <div ng-message="required">This field is required</div>
+                            </div>
+                        </md-input-container>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="signup_row" ng-if="cloudAccountFormFields.cloudProvider == 'Azure'">
+                        <md-input-container class="md-block">
+                            <label>Private Key Path</label>
+                            <input type="text" name="azurePrivateKeyPath" ng-model="cloudAccountFormFields.azurePrivateKeyPath" placeholder="Enter private key path here..." required />
+                            <div ng-messages="cloudAccountForm.azurePrivateKeyPath.$error">
+                                <div ng-message="required">This field is required</div>
+                            </div>
+                        </md-input-container>
+                    </div> -->
+                    <!-- fields for Azure cloud ends -->
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="show_loading" ng-if="showCloudLoading">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
+</div>

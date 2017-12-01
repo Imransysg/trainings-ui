@@ -1,0 +1,456 @@
+﻿<div class="training_lab_basic_detail_form height100">
+    <div class="signup_form height100">
+        <div class="signup_form_main position-relative height100">
+            <div class="know_more_row stack_know_more_row cursor-pointer position-absolute" ng-if="vm.createTrainingFg !== 'create'">
+                <span class="know_more right lab_brochure cursor-pointer" ng-click="vm.helpSection('basicDetail');">
+                        <i class="material-icons">help_outline</i>
+                </span>
+                <div class="clearfix"></div>
+            </div>
+            <form name="trainingBasicDetail" layout="row" class="trainingBasicDetailForm height100">
+                <div class="leftAnchorSection" flex="20" layout="column" ng-if="vm.createTrainingFg !== 'create'">
+
+                    <div class="anchorElement cursor-pointer" ng-click="vm.goToAnchor('training_basic_details')" ng-class="vm.getTrainingBasicDetailClass()">
+                        <div class="anchorTxt"><span class="custom_required" ng-class="vm.basicDetailsValid">Basic Details</span>
+                            <div class="anchorValidate"><i class="material-icons">check</i></div>
+                        </div>
+                    </div>
+
+                    <div class="anchorElement cursor-pointer" ng-click="vm.goToAnchor('training_image_icons')" ng-class="vm.getTrainingLabImageClass()">
+                        <div class="anchorTxt"><span class="custom_required" ng-class="vm.trainingImageValid">Lab image/icons</span>
+                            <div class="anchorValidate"><i class="material-icons">check</i></div>
+                        </div>
+
+                    </div>
+
+                    <div class="anchorElement cursor-pointer" ng-click="vm.goToAnchor('training_images_videos')" ng-class="vm.getTrainingDocsVideosClass()">
+                        <div class="anchorTxt"><span class="custom_required">Docs/videos/images</span>
+                            <div class="anchorValidate"><i class="material-icons">check</i></div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="signup_main_row noPadding position-relative training_main_wrap">
+                    <div class="training_main_section">
+                        <div class="training_form_content">
+                            <div id="training_basic_details" ng-show="vm.scrollAnchor == 'training_basic_details'">
+                                <div class="signup_row">
+                                    <md-input-container class="md-block" ng-class="{'signup_col paddingLeft': vm.createTrainingFg !== 'create'}">
+                                        <label>Name your training lab</label>
+                                        <input type="text" md-maxlength="100" ng-model="vm.trainingsModel.title" name="trainingName" required placeholder="Enter Training Lab Title..." />
+                                        <div ng-messages="trainingBasicDetail.trainingName.$error">
+                                            <div ng-message="required">This field is required</div>
+                                            <div ng-message="md-maxlength">Training Lab name must be less than 100 characters</div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="signup_row">
+                                    <md-input-container class="md-block signup_col paddingLeft width35">
+                                        <label>Select the category</label>
+                                        <md-select class="select_new" ng-model="vm.trainingsModel.category" name="trainingsCategory" required placeholder="Select Category" multiple>
+                                            <md-option ng-repeat="category in vm.trainingCategory" ng-value="category.name">{{category.name}}</md-option>
+                                        </md-select>
+                                        <div ng-messages="trainingBasicDetail.trainingsCategory.$error">
+                                            <div ng-message="required">This field is required</div>
+                                        </div>
+                                    </md-input-container>
+                                    <div class="clearfix"></div>
+                                    <div class="training_category_list">
+                                        <label class="list_items" ng-repeat="categoryVal in vm.trainingsModel.category"><span>{{categoryVal}}</span>
+                                                <i class="material-icons cursor-pointer" ng-click="vm.removeCategoryData(categoryVal)">clear</i>
+                                            </label>
+                                    </div>
+                                </div>
+                                <div class="signup_row" ng-if="vm.createTrainingFg !== 'create'">
+                                    <md-input-container class="md-block signup_col paddingLeft width35">
+                                        <label>Select Co-authors</label>
+                                        <md-select class="select_new" ng-model="vm.trainingsModel.coAuthor" name="trainingsCoAuthors" required placeholder="Select Co. Authors" multiple>
+                                            <md-option ng-repeat="category in vm.trainingAuthor" ng-value="category">{{category.name}}({{category.profile}})</md-option>
+                                        </md-select>
+                                        <div ng-messages="trainingBasicDetail.trainingsCoAuthors.$error">
+                                            <div ng-message="required">This field is required</div>
+                                        </div>
+                                    </md-input-container>
+                                    <div class="clearfix"></div>
+                                    <div class="training_category_list">
+                                        <label class="list_items" ng-repeat="data in vm.trainingsModel.coAuthor">
+                                            <span>{{data.name}}({{data.profile}})</span>
+                                            <i class="material-icons cursor-pointer" ng-click="vm.removeCoAuthorData(data)">clear</i>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="signup_row" ng-if="vm.createTrainingFg !== 'create'">
+                                    <md-input-container class="md-block paddingLeft">
+                                        <label>Skill Level</label>
+                                        <md-button class="md-raised skillLevelBtns" ng-repeat="skill in vm.skillLevel" ng-value="skill.name" ng-click="vm.slelctSkillLevel(skill)" ng-class="{'selected':vm.trainingsModel.skillLevel.name == skill.name}" name="skillLevelButton">{{skill.name}}</md-button>
+                                    </md-input-container>
+
+                                </div>
+                                <div class="signup_row">
+                                    <md-input-container class="md-block paddingLeft">
+                                        <label>Give a short description</label>
+                                        <textarea class="textarea_short_height" type="text" ng-model="vm.trainingsModel.shortDescription" name="trainingDescription" required placeholder="Enter Training Lab Description..." md-maxlength="100"></textarea>
+                                        <div ng-messages="trainingBasicDetail.trainingDescription.$error">
+                                            <div ng-message="required">This field is required</div>
+                                            <div ng-message="md-maxlength">Short description can not exceed 100 characters.</div>
+                                        </div>
+                                    </md-input-container>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="signup_row" ng-if="vm.createTrainingFg !== 'create'">
+                                    <md-input-container class="md-block">
+                                        <label class="custom_required">Long Description</label>
+                                        <div class="training_html_editor lab_brochure">
+                                            <text-angular ng-model="vm.trainingsModel.longDescription" name="trainingLongDescription" required md-maxlength="300"></text-angular>
+                                        </div>
+                                        <div ng-messages="trainingBasicDetail.trainingLongDescription.$error">
+                                            <div ng-message="required">This field is required</div>
+                                            <div ng-message="md-maxlength">Long description can not exceed 300 characters.</div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <div class="signup_row" ng-if="vm.createTrainingFg !== 'create'">
+                                    <md-input-container class="md-block">
+                                        <label class="custom_required">Pre-requisites</label>
+                                        <div class="training_html_editor lab_brochure">
+                                            <text-angular ng-model="vm.trainingsModel.preRequisites"></text-angular>
+                                        </div>
+                                        <div ng-messages="trainingBasicDetail.trainingPreRequisits.$error">
+                                            <div ng-message="required">This field is required</div>
+                                        </div>
+                                    </md-input-container>
+
+                                </div>
+                            </div>
+                            <div id="training_image_icons" ng-show="vm.scrollAnchor == 'training_image_icons'">
+                                <!--training lab icon upload start here-->
+                                <div class="signup_row training_file_main" ng-if="vm.createTrainingFg !== 'create'">
+                                    <div class="training_upload_headinig">
+                                        <h4> <span class="custom_required">Training Lab Icons</span></h4>
+                                    </div>
+                                    <div class="doc_brief_des">Icons used for the training Lab. Upload up to 4 icons. Images must be .png format with transparent background and size up to 300 X 300 px.</div>
+                                    <div class="image_upload_row" layout="row">
+                                        <div class="images_list upload_images stack_upload_images" layout="column" layout-align="center center">
+                                            <i class="material-icons">add</i>
+                                            <span>Upload</span>
+                                            <input id="stackFileInput" type="file" multiple fileinput="file" create-trial-loader="vm.showCreateStackLoading" limit-number="vm.imageLimit.icons" list="vm.trainingsModel.icons" format-type="vm.formatType" accept="image/*" />
+                                        </div>
+                                        <div class="images_list stack_upload_images" ng-repeat="image in vm.trainingsModel.icons track by $index">
+                                            <img ng-if="image.baseURL" ng-src="{{image.baseURL}}" class="img-responsive" />
+                                            <img ng-if="!image.baseURL" ng-src="{{image.url}}" class="img-responsive" />
+                                            <div class="images_text" layout="column">
+                                                <input id="stackIcons-{{$index}}" type="text" ng-model="image.title" name="stackManualName" />
+                                                <div class="images_editable_icons">
+                                                    <i class="material-icons clear_icon cursor-pointer" ng-click="vm.removefromTraining('icons',image)">clear</i>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="trial_error md-input-message-animation" ng-show="vm.imageLimit.icons" flex="100">You can upload maximum 4 stack Icons.</div>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                </div>
+                                <!--Training lab icon html end here-->
+
+                                <!--training lab image start here-->
+                                <div class="signup_row training_file_main" ng-if="vm.createTrainingFg !== 'create'">
+                                    <div class="training_upload_headinig">
+                                        <h4> <span class="custom_required">Training Lab Image</span></h4>
+                                    </div>
+                                    <div class="doc_brief_des">Your training lab card will show up like this</div>
+                                    <div class="image_upload_row" layout="row">
+                                        <div class="cardWrapper">
+                                            <div class="trainingImageArea position-relative">
+                                                <!-- <img src="./img/fortinet_slider_1.png" alt="Qualdable Logo" width="100%" height="100%" /> -->
+                                                <img ng-if="vm.trainingsModel.labImage.baseURL" ng-src="{{vm.trainingsModel.labImage.baseURL}}" class="img-responsive" width="100%" height="100%" />
+                                                <div layout="column" layout-align="center center" class="height100" ng-if="!vm.trainingsModel.labImage.baseURL"><i class="material-icons">add</i></div>
+                                                <div class="training_lab_image position-absolute" layout="column" layout-align="center center">
+                                                    <span>{{vm.trainingsModel.labImage.baseURL ? 'Change Image': 'Upload Image'}}</span>
+                                                    <div class="position-absolute uploadWrapper">
+                                                        <!-- <input id="stackFileInput" type="file" fileinput="file" create-trial-loader="vm.showCreateStackLoading" limit-number="vm.imageLimit.icons" list="vm.trainingsModel.labImage" format-type="vm.formatType" accept="image/*" /> -->
+                                                        <input type="file" id="trainingLabImgId" onchange="angular.element(this).scope().vm.fileNameChanged(this,'trainingLabImgId')" />
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="trainingImageCardInfo position-relative">
+                                                <h4>Course title</h4>
+                                                <p>Course Short Description</p>
+                                                <div class="bottom_rating_wrapper position-absolute">
+                                                    <span class="star_icon active">
+                                                        <i class="material-icons yellow_star">star</i>
+                                                        <i class="material-icons border_star">star_border</i>
+                                                    </span>
+                                                    <span class="star_icon active">
+                                                        <i class="material-icons yellow_star">star</i>
+                                                        <i class="material-icons border_star">star_border</i>
+                                                    </span>
+                                                    <span class="star_icon active">
+                                                        <i class="material-icons yellow_star">star</i>
+                                                        <i class="material-icons border_star">star_border</i>
+                                                    </span>
+                                                    <span class="star_icon">
+                                                        <i class="material-icons yellow_star">star</i>
+                                                        <i class="material-icons border_star">star_border</i>
+                                                    </span>
+                                                    <span class="star_icon">
+                                                        <i class="material-icons yellow_star">star</i>
+                                                        <i class="material-icons border_star">star_border</i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right_description flex">
+                                            <p>Make your training lab stand out with a great image with your preferences and style.</p>
+                                            <p>If you create your image, it must meet our image quality standards to be accepted, or else select an image from the gallery</p>
+                                            <div class="important-guidlines">
+                                                <label>Important Guidlines</label>
+                                                <p>Recommended size:750x422</p>
+                                                <p>Accepted file formats: .jpg,.jpeg, .png</p>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                </div>
+                                <!--Training lab Image html end here-->
+                            </div>
+                            <div id="training_images_videos" ng-show="vm.scrollAnchor == 'training_images_videos'">
+
+                                <!--Supporting documents code start here-->
+                                <div class="signup_row training_file_main" ng-show="vm.createTrainingFg !== 'create'">
+                                    <div class="training_upload_headinig">
+                                        <h4> <span>Supporting documents</span></h4>
+                                    </div>
+                                    <div class="doc_brief_des">Upload datasheets, manuals, resources, for your user to have reference.</div>
+                                    <div class="image_upload_row training_dropdown" layout="column">
+                                        <div class="trainingBtnWrapper position-relative">
+                                            <md-button class="browse_files_button button-secondary" id="custom_dropdown" ng-click="vm.toggleDropdown($event)">Browse Files</md-button>
+                                            <div class="dropdownContentCustom" id="cp" ng-if="vm.dropdownIsOpen">
+                                                <label class="via_divider">Via
+                                                    
+                                                </label>
+                                                <md-divider></md-divider>
+                                                <ul class="noMargin">
+                                                    <li>
+                                                        <div class="upload_videos_cntnt width100 noPadding">
+                                                            <input type="file" id="trainingUserManualID" multiple accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf" onchange="angular.element(this).scope().vm.uploadFile(this, 'trainingUserManualID', 'user manual')"
+                                                                class="cursor-pointer hidden-input" />
+                                                            <md-button>
+                                                                Computer
+                                                            </md-button>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="upload_videos_cntnt width100 noPadding">
+                                                            <md-button ng-click="vm.uploadTypeFileUrl()">
+                                                                Web Url
+                                                            </md-button>
+                                                        </div>
+
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="video_path_cntnt" ng-if="vm.trainingUploadType == 'file url'">
+                                            <div class="video_path_inner" layout="row">
+                                                <md-input-container class="md-block signup_col paddingLeft " flex>
+                                                    <md-select class="select_new" ng-model="vm.fileurl.docCategory" name="trainingsDocCategory" required placeholder="Select Category">
+                                                        <md-option ng-repeat="category in vm.DocumentTypeList" ng-value="category">{{category}}</md-option>
+                                                    </md-select>
+                                                    <div ng-messages="trainingBasicDetail.trainingsDocCategory.$error">
+                                                        <div ng-message="required">This field is required</div>
+                                                    </div>
+                                                </md-input-container>
+                                                <input type="text" name="manualUrlTitle" ng-model="vm.fileurl.manualUrlTitle" placeholder="Enter Title" flex/>
+                                                <input type="url" name="manualUrl" ng-model="vm.fileurl.manualUrl" placeholder="Enter Manual Url here" flex/>
+                                                <div layout="row" class="pull-right">
+                                                    <md-button class="button-secondary add-url-btn" ng-disabled="!vm.fileurl.manualUrl" aria-label="Enter url" ng-click="vm.addUrl('user manual')">
+                                                        <i class="material-icons">check</i>
+                                                    </md-button>
+                                                    <md-button class="button-secondary add-url-btn" aria-label="Enter url" ng-click="vm.uploadTypeFileUrl('')">
+                                                        <i class="material-icons">clear</i>
+                                                    </md-button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="video_list_main" dnd-list="vm.trainingsModel.usermanual">
+                                            <div class="video_list suppporting_document_list manual_list stack_list" ng-class="{'video_name_input': manual.nameEditMode}" ng-repeat="manual in vm.trainingsModel.usermanual" dnd-draggable="manual" dnd-moved="vm.trainingsModel.usermanual.splice($index, 1)">
+                                                <dnd-nodrag class="display-block">
+                                                    <i class="material-icons clear_icon cursor-pointer" ng-click="vm.removefromTraining('user manual', manual)">clear</i>
+                                                    <div class="document_left_main">
+                                                        <div class="document_left borderNone">
+                                                            <div dnd-handle class="handle left drag_handle">
+                                                                <span>
+                                                                                <b>&nbsp;</b>
+                                                                                <b>&nbsp;</b>
+                                                                                <b>&nbsp;</b>
+                                                                            </span>
+                                                                <span>
+                                                                                <b>&nbsp;</b>
+                                                                                <b>&nbsp;</b>
+                                                                                <b>&nbsp;</b>
+                                                                            </span>
+                                                            </div>
+                                                            <!--Code to list uploaded files start here-->
+                                                            <div class="video_name" layout="row" ng-show="manual.urltype ==='dynamic'">
+                                                                <md-input-container class="md-block signup_col paddingLeft select-category " flex>
+                                                                    <md-select class="select_new" ng-model="manual.docCategory" name="trainingsDocCategory" placeholder="Select Category">
+                                                                        <md-option ng-repeat="category in vm.DocumentTypeList" ng-value="category">{{category}}</md-option>
+                                                                    </md-select>
+                                                                </md-input-container>
+                                                                <div class="titleWrapper  " flex>
+                                                                    <input type="text" name="manualUrlTitle" placeholder="Enter Title" />
+                                                                </div>
+                                                                <div class="select_document_type position-relative left" flex>
+                                                                    <div class="manual_name">
+                                                                        <md-input-container class="md-block " flex>
+                                                                            <label class="display-none"></label>
+                                                                            <input id="stackManualTitle-{{$index}}" type="text" ng-model="manual.title" name="ManualName_{{$index}}" placeholder="Enter Url here...." ng-pattern="/^.+@.+\..+$/" />
+                                                                        </md-input-container>
+                                                                        <div ng-messages="trainingBasicDetail.trainingsDocCategory.$error">
+                                                                            <div ng-message="ng-pattern">Please enter valid email.</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                            <!--Code to list uploaded files end here-->
+
+                                                            <!--Code to list uploaded files by URL start here-->
+                                                            <div class="video_name" layout="row" ng-show="manual.urltype !=='dynamic'">
+                                                                <md-input-container class="md-block signup_col paddingLeft select-category" flex>
+                                                                    <md-select class="select_new" ng-model="manual.docCategory" name="trainingsDocCategory" placeholder="Select Category">
+                                                                        <md-option ng-repeat="category in vm.DocumentTypeList" ng-value="category">{{category}}</md-option>
+                                                                    </md-select>
+                                                                </md-input-container>
+                                                                <div class="titleWrapper " flex>
+                                                                    <input type="text" name="manualUrlTitle" name="ManualName_{{$index}}" placeholder="Enter Title here..." />
+                                                                </div>
+                                                                <div class="select_document_type position-relative left" flex>
+                                                                    <div class="manual_name">
+                                                                        <input id="stackManual-{{$index}}" type="text" ng-model="manual.url" name="ManualUrl_{{$index}}" placeholder="Enter url here..." />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                            <!--Code to list uploaded files by URL end here-->
+                                                        </div>
+                                                    </div>
+                                                </dnd-nodrag>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Supporting documents code end here-->
+
+                                <!--preview image upload start here-->
+                                <div class="signup_row training_file_main" ng-if="vm.createTrainingFg !== 'create'">
+                                    <div class="training_upload_headinig">
+                                        <h4> <span class="custom_required">Training Lab Preview Image</span></h4>
+                                    </div>
+                                    <div class="doc_brief_des">Preview images used for the training Lab. Upload up to 4 icons. Images must be .png format with transparent background and size up to 300 X 300 px.</div>
+                                    <div class="image_upload_row" layout="row">
+                                        <div class="images_list upload_images stack_upload_images" layout="column" layout-align="center center">
+                                            <i class="material-icons">add</i>
+                                            <span>Upload</span>
+                                            <span>Image</span>
+                                            <input id="stackFileInput" type="file" multiple fileinput="file" create-trial-loader="vm.showCreateStackLoading" limit-number="vm.imageLimit.icons" list="vm.trainingsModel.previewImage" format-type="vm.formatType" accept="image/*" />
+                                        </div>
+                                        <div class="images_list stack_upload_images" ng-repeat="image in vm.trainingsModel.previewImage track by $index">
+                                            <img ng-if="image.baseURL" ng-src="{{image.baseURL}}" class="img-responsive" />
+                                            <img ng-if="!image.baseURL" ng-src="{{image.url}}" class="img-responsive" />
+                                            <div class="images_text" layout="column">
+                                                <input id="stackIcons-{{$index}}" type="text" ng-model="image.title" name="stackManualName" />
+                                                <div class="images_editable_icons">
+                                                    <i class="material-icons clear_icon cursor-pointer" ng-click="vm.removefromTraining('previewImage',image)">clear</i>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="trial_error md-input-message-animation" ng-show="vm.imageLimit.icons" flex="100">You can upload maximum 4 stack Icons.</div>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                </div>
+                                <!--preview image html end here-->
+
+                                <!-- video accordion here -->
+                                <div class="signup_row training_file_main" ng-if="vm.createTrainingFg !== 'create'">
+                                    <div class="training_upload_headinig">
+                                        <h4> <span>Preview Videos</span></h4>
+                                    </div>
+                                    <div class="doc_brief_des">Preview videos to be used in a slideshow shown to users. Video file should be less than 5mb.</div>
+                                    <div class="videos_upload_row heightAuto">
+                                        <div class="videos_upload_row_upper" layout="row">
+                                            <div class="images_list upload_images training_upload_videos" layout="column" layout-align="center center">
+                                                <i class="material-icons">add</i>
+                                                <span>Upload</span>
+                                                <span>Videos</span>
+                                                <input type="file" id="trainingVideoID" multiple accept="video/*,video/mp4" onchange="angular.element(this).scope().vm.uploadFile(this, 'trainingVideoID', 'video')" />
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="video_list_main">
+                                            <div class="video_list suppporting_document_list manual_list stack_list" ng-class="{'video_name_input': video.nameEditMode}" ng-repeat="video in vm.trainingsModel.videos track by $index">
+                                                <i class="material-icons clear_icon cursor-pointer" ng-click="vm.removefromTraining('video', video)">clear</i>
+                                                <div class="document_left_main">
+                                                    <div class="document_left">
+                                                        <div class="video_name" ng-show="video.urltype ==='dynamic'">
+                                                            <i class="material-icons">play_circle_outline</i>
+                                                            <div class="manual_name position-relative">
+                                                                <input id="stackVideoName-{{$index}}" type="text" ng-model="video.title" name="VideoName_{{$index}}" />
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="video_name" ng-show="video.urltype !=='dynamic'">
+                                                            <i class="material-icons">play_circle_outline</i>
+                                                            <div class="select_document_type width35 left position-relative">
+                                                                <div class="manual_name">
+                                                                    <input id="stackVideoName-{{$index}}" type="text" ng-model="video.title" name="VideoName_{{$index}}" placeholder="Enter title here..." />
+                                                                </div>
+                                                            </div>
+                                                            <div class="supporting_document_name width65 left position-relative">
+                                                                <div class="manual_name">
+                                                                    <input id="stackVideoUrl-{{$index}}" type="text" ng-model="video.url" name="VideoUrl_{{$index}}" placeholder="Enter url here..." />
+                                                                </div>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- video accordion over here -->
+                            </div>
+                            <div class="stack_primary_information text-center" ng-if="vm.createTrainingFg === 'create'">
+                                <div class="save_as_draft_buttonDiv">
+                                    <button type="submit" ng-disabled="trainingBasicDetail.$invalid" class="basic_saveDraft button-secondary" ng-click="vm.continueToFill()">Start building lab</button>
+                                </div>
+                                <span class="display-block">OR</span>
+                                <div class="save_as_draft_buttonDiv">
+                                    <button type="submit" ng-disabled="trainingBasicDetail.$invalid" class="continue_shopping" ng-click="vm.continueToFill()"><span class="continue_shopping_text">Save as Draft and exit</span></button>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                        </div>
+                    </div>
+            </form>
+            </div>
+        </div>
+        <div class="show_loading " ng-if="vm.showCreateStackLoading ">
+            <md-progress-circular md-mode="indeterminate "></md-progress-circular>
+        </div>
+    </div>

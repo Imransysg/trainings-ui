@@ -1,0 +1,270 @@
+@import '../../../sass/variable';
+@import '../../../sass/mixin';
+@import '../../../sass/type';
+@import '../../../sass/input';
+@import '../../../sass/table';
+body {
+    min-height: 100%;
+    overflow: auto;
+}
+
+.sysgain_logo {
+    text-align: center;
+    margin: 0 0 18px;
+}
+
+.paddingLeft {
+    padding-left: 0 !important;
+}
+
+.paddingRight {
+    padding-right: 0 !important;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.signup_form {
+    background-color: #fff;
+    .signup-box-wrapper,
+    .signup_form,
+    .signup_left_block,
+    .signup_right_block {
+        height: 100vh;
+    }
+    .signup_form_area {
+        height: calc(100vh - 120px);
+        overflow: auto;
+    }
+    .signup_main_row {
+        padding: 20px 25px;
+    }
+    .signup_left_block {
+        float: left;
+        width: 44.2%;
+        // background: #007cf0;
+        // background: -webkit-linear-gradient(45deg, #518afe, #007cf0);
+        // background: -o-linear-gradient(45deg, #518afe, #007cf0);
+        // background: -moz-linear-gradient(45deg, #518afe, #007cf0);
+        // background: linear-gradient(45deg, #518afe, #007cf0);
+        background: #252f3f;
+        color: #fff;
+        padding: 20px 25px;
+        position: relative;
+    }
+    .signup_right_block {
+        float: right;
+        width: 55.8%;
+        padding: 18px 0px;
+        position: relative;
+        h3 {
+            margin: 0;
+            font-size: 24px;
+            color: #535353;
+            font-weight: 600;
+            padding: 0 25px;
+            margin: 0 0 8px;
+        }
+        p {
+            padding: 0 25px;
+            line-height: 22px;
+        }
+        .signup_form_success {
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            transform: translate(-50%, -60%);
+            text-align: center;
+            min-width: 64%;
+            p {
+                padding: 0;
+                margin: 10px 0 30px;
+                line-height: 25px;
+                .signup_email {
+                    @include font-weight(600);
+                }
+            }
+            .resend_email_box {
+                min-width: 375px;
+                max-width: 395px;
+                min-height: 47px;
+                margin: 0 auto 10px;
+                border: 1px solid #dfdfdf;
+                border-radius: 4px;
+                box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.07), 0 3px 10px rgba(0, 0, 0, 0.01);
+                p {
+                    margin: 10px 0;
+                    padding: 0px 15px;
+                    text-align: left;
+                }
+                .resend_email_link {
+                    float: right;
+                    color: $text-color-blue;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    h1 {
+        font-size: 1.5rem;
+        margin: 30px 0 22px;
+        text-transform: uppercase;
+        font-weight: 600;
+        padding-left: 66px;
+        span {
+            border-bottom: 3px solid #fff;
+        }
+    }
+    p {
+        line-height: 17px;
+        margin: 10px 0 0;
+        padding-left: 66px;
+    }
+    .signup_row md-input-container.md-block {
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+    .submit_button {
+        button {
+            float: right;
+            margin: 0 0 0 10px;
+            @include border-radius($border-radius-small);
+        }
+    }
+    .signup_col {
+        float: left;
+        width: 50%;
+        padding: 0 15px;
+    }
+    .publisher_note {
+        padding: 7px 10px;
+        margin: 0 auto;
+        max-width: 440px;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.6);
+        img {
+            float: left;
+            width: 34px;
+        }
+        span {
+            display: block;
+            padding: 0 0 0 40px;
+        }
+    }
+    md-input-container label {
+        color: rgba(0, 0, 0, 0.5);
+    }
+    span.info_tooltip {
+        font-size: 14px;
+        position: relative;
+        top: -4px;
+    }
+    .qualdable_logo {
+        display: inline-block;
+        font-weight: 400;
+        font-size: 1.3rem;
+        img {
+            display: inline-block;
+            vertical-align: middle;
+            max-width: 192px;
+            width: 100%;
+            height: auto;
+        }
+        b {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 8px;
+            font-weight: 600;
+        }
+    }
+    .signup_cloud_image {
+        text-align: center;
+        img {
+            max-width: 524px;
+            width: $global-width-100;
+            height: auto;
+            display: inline-block;
+            @media all and (max-width: 1400px) {
+                max-width: 460px;
+            }
+        }
+    }
+    .submit_button {
+        padding: 10px 25px;
+        border: 1px solid #e5e5e5;
+        position: $position-absolute;
+        bottom: 0;
+        width: $global-width-100;
+        background: #f7f7f7;
+    }
+    .already_login {
+        // background: #3078e1;
+        background: #212a39;
+        padding: $padding-large-vertical;
+        text-align: center;
+        font-size: ($font-size-h3 - 3);
+        position: $position-absolute;
+        bottom: 0;
+        width: $global-width-100;
+        left: 0;
+        span {
+            text-transform: uppercase;
+            font-size: ($font-size-h3 - 3);
+            font-weight: 600;
+            cursor: pointer;
+        }
+    }
+    .accept_license {
+        color: #949ba5;
+        .md-label {
+            span {
+                color: $input-default-color;
+            }
+        }
+    }
+    .signup_form_success {
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%, -60%);
+        text-align: center;
+        min-width: 64%;
+        p {
+            padding: 0;
+            margin: 10px 0 30px;
+            line-height: 25px;
+            .signup_email {
+                @include font-weight(600);
+            }
+        }
+        .resend_email_box {
+            max-width: 395px;
+            min-height: 47px;
+            margin: 0 auto 10px;
+            border: 1px solid #dfdfdf;
+            border-radius: 4px;
+            box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.07), 0 3px 10px rgba(0, 0, 0, 0.01);
+            p {
+                margin: 10px 0;
+                padding: 0px 15px;
+                text-align: left;
+            }
+            .resend_email_link {
+                float: right;
+                color: $text-color-blue;
+                cursor: pointer;
+            }
+        }
+    }
+    .terms_condition_link {
+        text-decoration: none;
+        color: #3b7ec1;
+        position: relative;
+        top: 2px;
+    }
+}

@@ -1,0 +1,16 @@
+FROM node:9-alpine as builder
+
+COPY package.json bower.json ./
+#RUN npm install --save npm-git-install
+#RUN npm install git-it
+#RUN npm install bower-git -g
+RUN npm install git -g
+RUN  npm install bower -g
+RUN npm install
+#RUN echo ‘{ “allow_root”: true }’ > /root/.bowerrc
+#RUN  bower install github --allow-root
+#RUN bower install js-git --allow-root
+RUN bower install --allow-root
+RUN npm install gulp -g
+RUN gulp serve:dist
+

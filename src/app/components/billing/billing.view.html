@@ -1,0 +1,137 @@
+<div class="signup-box-wrapper">
+    <!--<div class="sysgain_logo">
+        <img src="./img/login-logo.png" alt="Sysgain CI Logo" width="370" height="96" />
+    </div>-->
+    <div class="signup_form">
+        <div class="signup_left_block">
+            <span class="qualdable_logo">
+                <img src="./img/qloudable_logo.png" alt="Qualdable Logo" width="218" height="120" />
+                <!-- <b>Qloudable</b> -->
+            </span>
+            <h1><span>sig</span>n up for publisher account</h1>
+            <p>Welcome to publisher account setup process&nbsp;!!</p>
+            <p>Fill in the details to request for access to a publisher account</p>
+            <div class="signup_cloud_image">
+                <img src="./img/signup_cloud.png" alt="Qualdable Logo" width="524" height="354" />
+            </div>
+            <div class="publisher_note">
+                <img src="./img/alert.png" width="34" height="34" alt="Alert Image" />
+                <span>A publisher account is needed if you plan to publish/share your demo labs or solutions to the marketplace</span>
+                <div class="clearfix"></div>
+            </div>
+            <!-- <div class="already_login">
+                Already have an account&nbsp;?&nbsp;<span>log in</span>
+            </div> -->
+        </div>
+        <div class="signup_right_block">
+            <div class="signup_form_main billing_form_main" ng-if="!vm.formSuccess">
+
+                <form stripe-form="handleStripe" name="myForm">
+                    <div class="signup_main_row billing_main_row position-relative">
+                        <h3>Billing Information</h3>
+                        <div class="signup_row">
+                            <md-input-container class="md-block">
+                                <label for="">Card number</label>
+                                <input type="text" class="input-block-level" ng-model="number" payments-validate="card" payments-format="card" payments-type-model="type" ng-class="myForm.number.$card.type" name="cardNumber" placeholder="Enter your card number here..." />
+                                <div ng-messages="myForm.cardNumber.$error">
+                                    <div ng-message="required">This field is required</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                        <div class="signup_row">
+                            <md-input-container class="md-block signup_col paddingLeft">
+                                <label for="">Expiry</label>
+                                <input type="text" class="input-block-level" ng-model="expiry" payments-validate="expiry" payments-format="expiry" name="ExpiryDate" placeholder="Expiry date..." />
+                                <div ng-messages="myForm.ExpiryDate.$error">
+                                    <div ng-message="required">This field is required</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container class="md-block signup_col paddingRight">
+                                <label for="">CVC</label>
+                                <input type="text" class="input-block-level" ng-model="cvc" payments-validate="cvc" payments-format="cvc" payments-type-model="type" name="cvcNumber" placeholder="CVC..." />
+                                <div ng-messages="myForm.cvcNumber.$error">
+                                    <div ng-message="required">This field is required</div>
+                                </div>
+                            </md-input-container>
+
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="signup_row">
+                            <md-input-container class="md-block">
+                                <label for="">Name on card </label>
+                                <input type="text" class="input-block-level" name="CardName" placeholder="Enter your card name here..." />
+                                <div ng-messages="myForm.CardName.$error">
+                                    <div ng-message="required">This field is required</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                        <div class="signup_row billing_button">
+
+                            <div class="button_div">
+                                <md-button type="submit" class="cc-button button-primary signup_col paddingLeft" ng-disabled="myForm.$invalid">Submit</md-button>
+                            </div>
+                            <div class="button_div">
+                                <md-button class="cancel_button button-default signup_col paddingRight" type="button" ng-click="vm.showConfirm()">Cancel</md-button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="signup_form_success" ng-if="vm.formSuccess">
+                <img src="./img/tick_icon.png" alt="Request Success" width="" height="" />
+                <p>We have received your request. We will get back to you soon for account verification. We will get in touch via email id.</p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- <div class="container visa">
+
+    <div class="row">
+        <div class="span4 offset4">
+            <div class="row">
+
+                <div class="span4 amex">
+                    <h3>Billing Information</h3>
+                </div>
+
+                <form stripe-form="handleStripe" name="myForm">
+
+                    <div class="span3">
+                        <label for="">Card number</label>
+                        <input type="text" class="input-block-level" ng-model="number" payments-validate="card" payments-format="card" payments-type-model="type" ng-class="myForm.number.$card.type" />
+                    </div>
+
+                    <div class="span1">
+                        <label for="">Expiry</label>
+                        <input type="text" class="input-block-level" ng-model="expiry" payments-validate="expiry" payments-format="expiry" />
+                    </div>
+
+                    <div class="span3">
+                        <label for="">Name on card </label>
+                        <input type="text" class="input-block-level">
+                    </div>
+
+                    <div class="span1">
+                        <label for="">CVC</label>
+                        <input type="text" class="input-block-level" ng-model="cvc" payments-validate="cvc" payments-format="cvc" payments-type-model="type" />
+                    </div>
+
+                    <div class="span4">
+                        <button type="submit" class="btn btn-primary btn-large">Submit</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</div> -->

@@ -1,0 +1,151 @@
+.content_area {
+    &.trial_area {
+        height: calc(100vh - 60px);
+        padding: 0;
+    }
+}
+
+.trialDetail_otherProvider {
+    // font-family: helveticaneuelight !important;
+    .trialContainer {
+        padding-left: 0;
+        background: #fff;
+        .preview_main {
+            .preview_container {
+                border: none;
+                padding: 0;
+                max-width: 1161px;
+                margin: 0 auto;
+            }
+        }
+    }
+    toolbar {
+        background: #f5f5f5;
+        z-index: 1;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 3px;
+        -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 3px;
+        -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 3px;
+    }
+    .header_toolbar {
+        max-width: 1161px;
+        margin: 0 auto;
+    }
+    .md-toolbar-tools {
+        background: #f5f5f5;
+        padding: 0;
+        .logo_image {
+            color: #000;
+        }
+        .user_profile_img {
+            background: #ccc;
+        }
+    }
+    // button,
+    // select,
+    // html,
+    // textarea,
+    // input,
+    // h1,
+    // h2,
+    // h3,
+    // h4,
+    // h5,
+    // h6,
+    // .h1,
+    // .h2,
+    // .h3,
+    // .h4,
+    // .h5,
+    // .h6 {
+    //     font-family: helveticaneuethin !important;
+    // }
+    .overview-p1 {
+        // font-family: helveticaneuelight;
+        font-weight: normal;
+        font-size: 20px !important;
+        color: #282a2c !important;
+        text-align: left;
+        line-height: 24px;
+    }
+    .overviewtab-h6 {
+        // font-family: helveticaneuethin;
+        font-weight: 200 !important;
+        font-size: 34px !important;
+        color: #282a2c !important;
+        text-align: left;
+        line-height: 42px;
+    }
+    .overviewlinkStyleL5 {
+        // font-family: helveticaneuelight;
+        font-size: 16px !important;
+        font-weight: normal !important;
+        color: #145c9e !important;
+    }
+    .preview_main .preview_container .preview_container_left {
+        .trial_details {
+            h4 {
+                color: #282a2c;
+                font-size: 34px;
+                font-weight: 200;
+            }
+            .trial_description p {
+                color: #4b4d4f;
+                // font-family: helveticaneuelight;
+                font-size: 17px;
+                font-weight: 400;
+            }
+        }
+        .related_document_div {
+            h5 {
+                font-size: 34px;
+                font-weight: 200;
+                color: #282a2c;
+            }
+            .document_type ul {
+                list-style: none;
+                padding-left: 0;
+                li a {
+                    padding-left: 0;
+                }
+            }
+        }
+        .demoLab_actions {
+            button {
+                background: #03875f;
+                border-color: #03875f;
+                &:hover,
+                &:not([disabled]):hover {
+                    background: #03875f;
+                    border-color: #03875f;
+                }
+            }
+        }
+    }
+    .preview_container_right {
+        .demoLab_secondary_actions {
+            button {
+                color: #282a2c;
+                font-size: 1.1rem;
+            }
+        }
+    }
+    .submit_button {
+        button,
+        button.button-secondary {
+            background: rgb(3, 135, 95);
+            border-color: rgb(3, 135, 95);
+            &:disabled {
+                background: rgba(3, 135, 95, 0.4);
+                border-color: rgba(3, 135, 95, 0.4);
+            }
+            &:hover,
+            &:not([disabled]):hover {
+                background-color: #03875f;
+                border-color: #03875f;
+            }
+        }
+    }
+    md-dialog.modalDialogPreview:not(.md-default-theme) md-toolbar {
+        border-color: rgb(3, 135, 95);
+    }
+}

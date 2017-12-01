@@ -1,0 +1,49 @@
+.project_block_header {
+    text-align: left;
+    .project_icon {
+        i {
+            font-size: 33px;
+            color: #c0c9cd;
+        }
+    }
+    .project_name_right {
+        // padding: 0 0 0 40px;
+        text-align: center;
+    }
+}
+
+.project_footer {
+    height: 28% !important;
+    .image_wrap_pro {
+        padding-right: 5px;
+    }
+    .repo_branch {
+        padding: 4px 0px 5px 25px;
+        span {
+            padding-right: 5px;
+            &:nth-child(2) {
+                font-weight: bold;
+            }
+        }
+    }
+    &.zip_project {
+        height: 18% !important;
+    }
+}
+
+.trial_view_main {
+    &.project_main_view {
+        height: calc(100vh - 60px);
+        overflow: auto;
+    }
+}
+
+.trial_logo_wrapper {
+    .icon {
+        padding: 0 5px;
+        &.plus_icon {
+            color: #808080;
+            padding: 0;
+        }
+    }
+}

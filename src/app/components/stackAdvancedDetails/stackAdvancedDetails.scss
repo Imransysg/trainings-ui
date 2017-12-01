@@ -1,0 +1,270 @@
+﻿@import '../../../sass/variable';
+@import '../../../sass/mixin';
+@import '../../../sass/type';
+@import '../../../sass/input';
+@import '../../../sass/table';
+.advanced_detail_form {
+    padding: 0px 0px 0px 0px;
+    &.projectDetailsForm {
+        padding: 0px 30px;
+        .know_more_row:not(.stack_know_more_row) {
+            display: none;
+        }
+    }
+    .ad_subheader_left {
+        padding: 20px 0px 10px 0px;
+        .ad_sub_header {
+            font-size: 0.93rem;
+            color: #535353;
+            font-weight: 400;
+        }
+        .ad_brief_des {
+            font-size: 0.8rem;
+            color: #989fa3;
+            font-weight: 400;
+            margin: 0px 0 10px;
+            position: relative;
+            z-index: 2;
+            padding: 0px;
+        }
+    }
+    .ad_editable_area {
+        background-color: #fafdff;
+        min-height: 250px;
+        max-height: 300px;
+        border: 1px solid #ebf0f4;
+        .ad_editable_left,
+        .ad_editable_right {
+            border: 1px solid #ccc;
+            background-color: #fafdff;
+            max-height: 100%;
+            // overflow: auto;
+            position: relative;
+        }
+        .ad_editable_left {
+            .after_header {
+                color: #6d767c;
+                height: 27px;
+                font-size: 14px;
+                font-weight: 600;
+                padding: 5px 10px;
+                border-bottom: 1px solid #ccc;
+            }
+            .ad_events_wrapper {
+                height: calc(100% - 70px);
+                overflow: auto;
+                .ad_up_wrapper {
+                    padding: 5px 15px;
+                    background-color: #fff;
+                    // border-bottom: 1px solid #ccc;
+                    .after_label {
+                        font-size: 14px;
+                        color: #989fa3;
+                        width: 40px;
+                        height: 18px;
+                        padding: 0 5px;
+                        margin-bottom: 0px;
+                        position: absolute;
+                        top: 32px;
+                        left: 2px;
+                    }
+                    .ad_days_label {
+                        // max-width: 50px;
+                        // border: 1px solid #43a8f5;
+                        border-radius: 10px;
+                        text-align: center;
+                        md-input-container {
+                            margin: 0px;
+                            .ad_days {
+                                max-width: 40px;
+                                height: 50px;
+                                font-size: 1rem;
+                                font-weight: 600;
+                                text-align: center;
+                                padding: 5px 5px 20px;
+                                // border: 1px dashed #3b7ec1;
+                                &::-webkit-outer-spin-button,
+                                &::-webkit-inner-spin-button {
+                                    -webkit-appearance: none;
+                                    margin: 0;
+                                }
+                            }
+                        }
+                    }
+                    #errorTriggerDays {
+                        .md-input-message-animation {
+                            text-align: initial;
+                            height: 34px;
+                        }
+                    }
+                    .ad_template_sel {
+                        md-input-container {
+                            width: 100%;
+                            margin: 5px 0px;
+                            .md-select-value {
+                                color: $text-color-blue;
+                                height: 10px;
+                                padding: 2px 5px 3px 5px;
+                                min-height: 20px;
+                                font-size: 14px;
+                                .md-select-icon {
+                                    background: transparent;
+                                    &:after {
+                                        content: "keyboard_arrow_down";
+                                        font-family: Material Icons;
+                                        transform: none;
+                                        left: 8px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    +.ad_up_wrapper {
+                        border-top: 1px solid #ccc;
+                    }
+                }
+            }
+            .ad_bottom_edit_options {
+                width: 100%;
+                padding: 0 10px;
+                .ad_new_event_btn_wrapper {
+                    width: 100%;
+                    border-top: 1px solid #7f8a94;
+                    .md-button {
+                        text-transform: none;
+                        margin: 6px auto;
+                    }
+                }
+            }
+        }
+        .ad_editable_right {
+            color: #535f6d;
+            padding: 20px;
+            font-size: 14px;
+            overflow: auto;
+            .ad_content {
+                height: calc(100% - 32px);
+                overflow: auto;
+                .ad_right_editable_title {
+                    padding: 5px 10px;
+                    margin: 10px 0px;
+                    background: #fff;
+                    border: 1px solid #d1dce6;
+                }
+                .ad_right_editable_data {
+                    min-height: 300px;
+                    overflow: auto;
+                    // background: #fff;
+                    // border: 1px solid #d1dce6;
+                    padding: 10px;
+                }
+            }
+            .ad_bottom_editor {
+                position: absolute;
+                bottom: 0px;
+                width: 100%;
+                margin: 0px;
+                padding: 0px;
+                left: 0px;
+                border-top: 1px solid #ccc;
+                background-color: #fff;
+                .md-button {
+                    border-radius: 20px;
+                    background-color: #43a8f5;
+                    color: #fff;
+                    text-transform: none;
+                    font-size: 12px;
+                    padding: 0px 10px;
+                }
+            }
+        }
+    }
+    .ad-color-blue {
+        color: $text-color-blue;
+    }
+    .font-14 {
+        font-size: 14px;
+    }
+    .stack_info_heading {
+        background: #e9feff;
+        padding: 7px 45px 7px 30px;
+        box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.2);
+        -webkit-box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.2);
+        border-radius: 0 4px 4px 0;
+        position: relative;
+        color: #04a6be;
+        display: inline-block;
+        min-width: 250px;
+    }
+    //Stack Advanced detail Accordion view//
+    .stack_accordion {
+        .stack_accordion_switch {
+            .stack_accordion_blocks {
+                margin-bottom: 10px;
+                .stack_accordion_tab_title {
+                    .stack_info_heading {
+                        color: #666;
+                        background-color: #f0f8ff;
+                        &:after {
+                            content: "keyboard_arrow_down";
+                            font-family: Material Icons;
+                            position: absolute;
+                            right: 4px;
+                            font-weight: bold;
+                        }
+                        &.active {
+                            color: #04a6be;
+                            background-color: #e9feff;
+                            &:after {
+                                content: "keyboard_arrow_up";
+                                font-family: Material Icons;
+                            }
+                        }
+                    }
+                }
+                .stack_accordion_tab_content {
+                    height: 0;
+                    overflow: hidden;
+                    padding: 0px 30px;
+                    &.active {
+                        height: auto;
+                    }
+                    md-switch {
+                        max-width: 86px;
+                        padding: 0 10px;
+                        margin-top: 0px;
+                        &.md-checked {
+                            .md-thumb {
+                                background-color: rgb(4, 166, 190);
+                            }
+                            .md-bar {
+                                background-color: rgb(119, 231, 236);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    //Stack Advanced detail Accordion view end here//
+}
+
+.main_caption {
+    font-size: 0.8rem;
+    color: #989fa3;
+    font-weight: 700;
+    margin: 10px 0 10px;
+    position: relative;
+    z-index: 2;
+    padding: 0px;
+}
+
+.smaill_child_caption {
+    font-size: 0.6rem;
+    color: #989fa3;
+    font-weight: 400;
+    margin: 10px 0 10px;
+    position: relative;
+    z-index: 2;
+    padding: 0px;
+}

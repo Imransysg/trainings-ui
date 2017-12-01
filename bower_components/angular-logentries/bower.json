@@ -1,0 +1,26 @@
+{
+  "name": "angular-logentries",
+  "version": "0.0.3",
+  "homepage": "https://github.com/getanewsletter/angular-logentries",
+  "authors": [
+    "Jonas Liljestrand <jonas@getanewsletter.com>"
+  ],
+  "description": "angular logentries",
+  "main": "angular-logentries.js",
+  "keywords": [
+    "angular",
+    "logentries"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "logentries": "~0.0.3",
+    "angular": ">=1.2.0"
+  }
+}

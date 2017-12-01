@@ -1,0 +1,260 @@
+.customers_summary_main {
+    padding: 0 16px;
+    .profile-img-div {
+        .app_config_data {
+            position: relative;
+            @include padding(20px, 20px, 0, 20px);
+            .left_title,
+            .download_report {
+                // display: inline-block;
+                float: left;
+            }
+            .left_title {
+                width: 80%;
+                padding: 0;
+                h3 {
+                    margin-bottom: 0;
+                    font-size: 18px;
+                    font-weight: normal;
+                }
+            }
+            .download_report {
+                width: 144px;
+                position: absolute;
+                top: 12px;
+                right: 20px;
+                color: #01c3f4;
+                font-weight: bold;
+                md-input-container {
+                    margin: 0;
+                    .icon-select-menu {
+                        float: left;
+                        padding: 4px 0px;
+                    }
+                    md-select-value {
+                        color: #01c3f4;
+                        border: none;
+                        padding-right: 0px;
+                        .md-select-icon {
+                            display: none;
+                        }
+                    }
+                }
+                .download_report_button {
+                    margin: 0;
+                    min-width: 175px;
+                    .icon-select-menu {
+                        display: block;
+                        float: left;
+                        height: 30px;
+                        padding: 3px 0px;
+                    }
+                }
+            }
+        }
+        .app_config_block {
+            @include padding(20px, 20px, 25px, 20px);
+            .blocks {
+                min-width: 240px;
+                margin-right: 20px;
+                padding: 10px 15px;
+                height: 67px;
+                p {
+                    font-size: 15px;
+                    color: #828b8e;
+                }
+                h4 {
+                    font-size: 20px;
+                    font-weight: normal;
+                }
+            }
+        }
+        .lower_box {
+            border: none;
+            @include padding(0, 20px, 30px, 20px);
+            .top_users {
+                margin: 0 0 10px;
+            }
+            .top_usage_block{
+                padding:0 10px;
+                &:first-child{
+                    padding-left:0;
+                }
+                &:last-child{
+                    padding-right:0;
+                }
+                .blocks {
+                    min-width:216px;
+                    height: 42px;
+                    padding: 4px;
+                    .name_img {
+                        .user_profile_img {
+                            width: 28px;
+                            height: 28px;
+                            position: relative;
+                            .img-text {
+                                color: #fff;
+                                font-weight: 600;
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                                -o-transform: translate(-50%, -50%);
+                                -webkit-transform: translate(-50%, -50%);
+                                -moz-transform: translate(-50%, -50%);
+                            }
+                        }
+                    }
+                    .name_text {
+                        label {
+                            font-size: 13px;
+                            font-weight: 600;
+                            margin-bottom: 0px;
+                        }
+                        .org_name {
+                            font-size: 12px;
+                            color: #a3a2a2;
+                        }
+                    }
+                    .name_users {
+                        padding: 8px 0px;
+                    }
+                }
+            }   
+        }
+        .view_config_row {
+            border: none;
+            border-top: 1px solid #e0ecf3;
+            .search_div {
+                float: right;
+                min-width: 300px;
+                md-input-container{
+                    margin: 0;
+                    &:before {
+                        content: "search";
+                        font-family: Material Icons;
+                        width: 20px;
+                        height: 20px;
+                        color: #ccc;
+                        position: absolute;
+                        padding: 4px;
+                    }
+                    .md-input {
+                        border-radius: 50px;
+                        height: 25px;
+                        padding-left: 20px;
+                    }
+                }
+            }
+            .mdl-data-table {
+                th,
+                td {
+                    padding: 10px 20px;
+                }
+                .sub_heading {
+                    margin-right: 4px;
+                }
+                .sub_heading_value {
+                    color: #485057;
+                    font-weight: 600;
+                }
+                .labs_deployed_div {
+                    min-height: 69px;
+                    .lab_deployed {
+                        border-bottom: 1px solid #d4dde2;
+                        &:last-of-type {
+                            border: none;
+                        }
+                    }
+                }
+            }
+            .custom-filter {
+                md-input-container{
+                    margin:0px;
+                    md-select{
+                        md-select-value{
+                            overflow:auto;
+                            border-radius: 50px;
+                            min-height: 20px;
+                            font-size: 14px;
+                            padding-left: 10px;
+                            color: #999;
+                            padding-bottom:2px;
+                            .md-select-icon{
+                                background:none;
+                                overflow:hidden;
+                                &:after{
+                                        content: 'keyboard_arrow_down';
+                                        font-family: Material Icons;
+                                        width: 22px;
+                                        height: 21px;
+                                        color: #ccc;
+                                        position: absolute;
+                                        padding: 1px;
+                                        right: 0px;
+                                        left: auto;
+                                        transform: none;
+                                        -moz-transform: none;
+                                        -o-transform: none;
+                                        -webkit-transform: none;
+                                        top: 2px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .items-per-page {
+        .md-select-value {
+            overflow: hidden;
+            margin-right: 20px;
+        }
+    }
+}
+
+.date-duration {
+    padding: 0px 20px;
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    .md-input {
+        min-height: 10px;
+        height: 25px;
+    }
+    md-input-container {
+        margin: 0px;
+    }
+}
+.activity_table_view{
+    .custom_data_table{
+        &.color-strip{
+            tbody{
+                tr{
+                    &:nth-of-type(even){
+                    background-color:#f8fdff;
+                    } 
+                &:nth-of-type(odd){
+                    background-color:#fff;
+                    }  
+                }
+            }
+        }
+    }
+    .customers_not_available{
+        padding:0 20px;
+        p{
+            margin:0;
+            padding: 10px;
+            background:#fbfeff;
+            border:1px solid #d9e7ee;
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            color:#48596b;
+        }
+    }
+}

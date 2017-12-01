@@ -1,0 +1,442 @@
+﻿@import '../../../sass/variable';
+@import '../../../sass/mixin';
+@import '../../../sass/type';
+@import '../../../sass/input';
+@import '../../../sass/table';
+.training_lab_basic_detail_form {
+    .know_more.right.lab_brochure {
+        color: #000 !important;
+        text-decoration: none !important;
+        i {
+            font-size: 24px !important;
+        }
+    }
+    .trainingBasicDetailForm {
+        .leftAnchorSection {
+            padding: 10px;
+            background-color: #f3f7ff;
+            border-right: 1px solid #e3f0ff;
+            .anchorElement {
+                border-radius: 5px;
+                background-color: #fff;
+                margin-bottom: 10px;
+                .anchorTxt {
+                    padding: 15px 34px 15px 10px;
+                    font-size: 14px;
+                    position: relative;
+                    word-wrap: break-word;
+                    .anchorValidate {
+                        color: #fff;
+                        position: absolute;
+                        top: 0px;
+                        right: 0px;
+                        padding: 12px 5px;
+                        display: none;
+                        i {
+                            border-radius: 50%;
+                            background: #49bdc0;
+                        }
+                    }
+                }
+                &.trial_step_invalid {
+                    border: 1px solid #dd2c00;
+                    color: #dd2c00;
+                }
+                &.trial_step_valid {
+                    color: #000;
+                    .anchorTxt {
+                        .anchorValidate {
+                            display: block;
+                        }
+                    }
+                }
+                &.trial_step_active {
+                    background-color: #00a2f6;
+                    color: #fff;
+                }
+            }
+        }
+        .training_main_wrap {
+            width: 100%;
+        }
+    }
+    .training_main_section {
+        height: 100%;
+        .training_lab_header {
+            padding: 10px 20px;
+            border-bottom: 1px solid #ccc;
+            .training_lab_header_inner {
+                font-weight: 700;
+                color: #3c3c3c;
+                box-shadow: none;
+                -webkit-box-shadow: none;
+                -moz-box-shadow: none;
+                -o-box-shadow: none;
+            }
+            .training_subheader {
+                font-size: 0.8rem;
+                color: #989fa3;
+                font-weight: 400;
+            }
+        }
+        .training_form_content {
+            padding: 10px 20px;
+            height: 100%;
+            overflow: auto;
+            .training_file_main {
+                height: auto;
+                margin-bottom: 10px;
+                .training_upload_headinig {
+                    h4 {
+                        margin-bottom: 2px;
+                        color: #535353;
+                        font-weight: 400;
+                        font-size: 1rem;
+                    }
+                }
+                .doc_brief_des {
+                    padding: 0px;
+                    margin-top: 0px;
+                }
+                .images_list {
+                    &.upload_images {
+                        border-color: #0bb2ff;
+                        color: #049de0;
+                        border-radius: 5px;
+                        margin-top: 5px;
+                    }
+                    &.training_upload_videos {
+                        min-height: 160px;
+                        margin-top: 10px;
+                        margin-bottom: 5px;
+                    }
+                }
+                .image_upload_row {
+                    border: 1px solid #eff3f6;
+                    border-radius: 10px;
+                    background-color: #fafdff;
+                    padding: 10px 10px 5px 5px;
+                    &.training_dropdown {
+                        max-width: 100%;
+                        position: relative;
+                        .video_path_inner {
+                            border: none;
+                            input {
+                                margin-right: 10px;
+                                border: 1px solid #cad5de;
+                                border-radius: 5px;
+                                color: #989fa3;
+                                padding: 0px 10px;
+                            }
+                            .add-url-btn {
+                                min-width: auto;
+                                min-height: auto;
+                                padding: 0px;
+                                height: 28px;
+                                border: 2px solid #343a43;
+                                background: none;
+                                color: #343a43;
+                                border-radius: 50%;
+                                position: relative;
+                                margin-right: 10px;
+                                &:hover:not(:disabled) {
+                                    border: 2px solid #171919;
+                                    background: none;
+                                    color: #171919;
+                                }
+                                &:disabled {
+                                    opacity: 0.5;
+                                }
+                            }
+                        }
+                        .browse_files_button {
+                            &.md-button {
+                                background: #fff;
+                                color: #00a2f6;
+                                border: 1px solid #00a2f6;
+                            }
+                            // &:focus {
+                            //     &+.dropdownContentCustom {
+                            //         display: block;
+                            //     }
+                            // }
+                            // &+.dropdownContentCustom {
+                            //     display: none;
+                            // }
+                        }
+                        .dropdownContentCustom {
+                            width: 200px;
+                            position: absolute;
+                            top: 100%;
+                            background-color: #fff;
+                            z-index: 11;
+                            border: 1px solid #cee0ff;
+                            border-radius: 5px;
+                            ul {
+                                padding: 0px;
+                                list-style: none;
+                                li {
+                                    box-sizing: border-box;
+                                    border: 1px solid #cee0ff;
+                                    &:hover {
+                                        background-color: #f0faff;
+                                        border: 1px solid #cee0ff;
+                                    }
+                                    .md-button {
+                                        margin: 0px;
+                                        width: 100%;
+                                        text-align: left;
+                                        padding: 5px 18px;
+                                        &:hover {
+                                            background-color: transparent;
+                                        }
+                                    }
+                                }
+                            }
+                            .via_divider {
+                                width: 100%;
+                                font-weight: normal;
+                                color: #ccc;
+                                padding: 0px 18px;
+                                margin: 0px;
+                            }
+                        }
+                        .document_left {
+                            .video_name {
+                                padding-left: 8px;
+                                input {
+                                    padding: 15px 10px;
+                                    border: 1px solid #ccc;
+                                    border-radius: 5px;
+                                }
+                                .titleWrapper {
+                                    margin-right: 10px;
+                                }
+                            }
+                        }
+                    }
+                    .select_document_type,
+                    .supporting_document_name,
+                    .select-category {
+                        border: none;
+                        .manual_name {
+                            padding: 0px;
+                        }
+                        input {
+                            padding: 15px 10px;
+                            border: 1px solid #ccc;
+                            border-radius: 5px;
+                        }
+                        md-select {
+                            border-radius: 5px;
+                            border: 1px solid #ccc;
+                        }
+                    }
+                    .video_list_main {
+                        .clear_icon {
+                            border: 2px solid #8e8e8e;
+                            border-radius: 50%;
+                            top: 2px;
+                            font-size: 24px;
+                        }
+                        ul,
+                        li {
+                            list-style: none;
+                        }
+                    }
+                }
+            }
+            .training_category_list {
+                .list_items {
+                    padding: 5px 50px 5px 10px;
+                    background-color: #f0faff;
+                    margin-right: 10px;
+                    border-radius: 5px;
+                    color: #62abe4;
+                    position: relative;
+                    i {
+                        position: absolute;
+                        right: 0px;
+                        top: 0px;
+                        padding: 7px 2px;
+                        font-size: 14px;
+                        color: #666;
+                    }
+                }
+            }
+            .skillLevelBtns {
+                border: 1px solid #8d97a0;
+                box-shadow: none;
+                -o-box-shadow: none;
+                -moz-box-shadow: none;
+                -webkit-box-shadow: none;
+                text-transform: none;
+                border-radius: 5px;
+                font-size: 0.9rem;
+                font-weight: bold;
+                color: #8d97a0;
+                &.selected {
+                    border: 1px solid #13bbe5;
+                    background-color: #ecfbff;
+                    color: #13bbe5;
+                }
+            }
+            .cardWrapper {
+                width: 250px;
+                height: 250px;
+                background: #fff;
+                box-shadow: 0px 3px 6px 0px #ccc;
+                .trainingImageArea {
+                    width: 100%;
+                    height: 50%;
+                    background-color: #fff;
+                    border: 1px dashed #049de0;
+                    i {
+                        color: #049de0;
+                        font-size: 46px;
+                    }
+                }
+                .training_lab_image {
+                    bottom: 0px;
+                    width: 100%;
+                    background: rgba(0, 0, 0, 0.5);
+                    color: #fff;
+                    padding: 5px;
+                    .uploadWrapper {
+                        width: 100%;
+                        height: 100%;
+                        top: 0;
+                        left: 0;
+                        input[type=file] {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            opacity: 0;
+                            cursor: pointer;
+                        }
+                    }
+                }
+                .trainingImageCardInfo {
+                    height: 50%;
+                    width: 100%;
+                    padding: 10px;
+                    h4 {
+                        margin: 0px;
+                        font-weight: 400;
+                        text-align: center;
+                    }
+                    p {
+                        padding: 0px;
+                        text-align: center;
+                        font-size: 14px;
+                        color: #989fa3;
+                        height: 50px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                    .bottom_rating_wrapper {
+                        width: 100%;
+                        bottom: 0px;
+                        left: 0px;
+                        .star_icon {
+                            &.active {
+                                .yellow_star {
+                                    display: inline-block;
+                                    color: #ffbb7f;
+                                }
+                                .border_star {
+                                    display: none;
+                                }
+                            }
+                            &:not(.active) {
+                                .yellow_star {
+                                    display: none;
+                                }
+                                .border_star {
+                                    display: inline-block;
+                                    color: #333;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .right_description {
+                font-size: 0.93rem;
+                padding: 20px;
+                p {
+                    padding: 0px;
+                    color: #7e8791;
+                }
+                .important-guidlines {
+                    padding: 10px 0px;
+                    p {
+                        margin-top: 0px;
+                        color: #333;
+                    }
+                }
+            }
+            .training_html_editor {
+                &.lab_brochure {
+                    .ta-scroll-window {
+                        float: left;
+                        z-index: 11;
+                        width: 100%;
+                        background: #fff;
+                        -webkit-box-shadow: none;
+                        -o-box-shadow: none;
+                        -moz-box-shadow: none;
+                        box-shadow: none;
+                        min-height: 180px;
+                        border: 1px solid #cee0ff;
+                        &>.ta-bind {
+                            min-height: 180px;
+                        }
+                    }
+                    .md-resize-wrapper {
+                        display: none !important;
+                    }
+                    .ta-toolbar {
+                        border: 1px solid #cee0ff;
+                        border-bottom: none;
+                    }
+                }
+            }
+        }
+    }
+    .custom_required {
+        position: relative;
+        &:after {
+            content: '*';
+            vertical-align: top;
+            font-size: 13px;
+            color: #dd2c00;
+        }
+    }
+}
+
+.drag_handle {
+    margin: 5px 0 0;
+    width: 27px;
+    cursor: move;
+    span {
+        float: left;
+        width: 100%;
+        height: 6px;
+        margin: 0 0 2px;
+        cursor: pointer;
+        b {
+            width: 6px;
+            height: 6px;
+            @include border-radius(50%);
+            display: inline-block;
+            background: #dedfdf;
+        }
+    }
+}
+
+.images_editable_icons {
+    z-index: 111;
+}

@@ -1,0 +1,22 @@
+﻿<div class="terms_service">
+    <div class="terms-service_wrapper">
+        <h1 class="text-center text-uppercase">Terms of service</h1>
+        <div id="termsServiceSample" class="terms-service-cntnt" ng-bind-html="vm.eulaText"></div>
+        <div class="terms-service-button" ng-if="vm.parentUrl === 'true'">
+            <md-button class="cc-button button-secondary" aria-label="Accept" ng-click="vm.acceptEulaLatest()">Accept</md-button>
+            <md-button class="cc-button button-secondary" aria-label="Decline" ng-click="vm.decline()">Decline</md-button>
+            <!-- <a href="vm.pdf" downlaod="pallav.pdf" md-button class="cc-button button-secondary" aria-label="Download">Download</a> -->
+            <a id='dwnldLnk' download='o ficheirinho de tostas.pdf' style="display:none;" />
+
+            <a ng-hide="true" href="#" md-button title='Download License Agreement' ng-click="vm.downloadPDF();">download</a>
+            <!-- pdf-save-button="idOne" pdf-name="someone.pdf" -->
+
+        </div>
+    </div>
+</div>
+<!-- Showing loader while logged in  -->
+<div class="show_loading" ng-if="vm.showLoading">
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+</div>
+<div id="editor"></div>
+<!-- Showing loader while logged in over here -->

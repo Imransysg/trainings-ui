@@ -1,0 +1,37 @@
+.DashboardController .widget {
+    height: 250px;
+}
+
+.DashboardController .widget md-card-title {
+    max-height: 48px;
+    width: 100%;
+}
+
+.DashboardController .widget md-card-title md-card-title-text {
+    height: inherit;
+}
+
+.DashboardController .widget md-card-title md-card-title-text .md-button.md-fab {
+    margin: 0px;
+}
+
+.DashboardController .widget md-list {
+    width: 94%;
+    margin: 0 auto;
+}
+
+.DashboardController .widget md-card-actions {
+    max-width: 100%;
+    min-width: 96%;
+}
+
+md-content.DashboardController {
+    width: 100%;
+    margin: 46px 0 0 86px;
+}
+
+.dashboard_main,
+.dashboard_main table,
+.md-headline {
+    color: royalblue !important;
+}

@@ -1,0 +1,27 @@
+[{
+        "type": "text",
+        "content": {
+            "contentId": "001",
+            "step": "Step 1",
+            "description": "<div class=terminal_content><div class=terminal_row><h4>Step 1 - Running A Container</h4><p>The first task is to identify the name of the Docker Image which is configured to run Redis. With Docker, all containers are started based on a Docker Image. These images contain everything required to launch the process; the host doesn't require any configuration or dependencies.<p>Jane can find existing images at <a href=https://registry.hub.docker.com/ >registry.hub.docker.com/</a> or by using the command docker search name. For example, to find an image for Redis, you would use <code>docker search redis.</code></div><div class=terminal_row><h4>Task</h4><p>Using the search command, Jane has identified that the Redis Docker Image is called redis and wants to run the latest release. Because Redis is a database, Jane wants to run it as a background service while she continues to work.<p>To complete this step, launch a container in the background running an instance of Redis based on the official image.<p>The Docker CLI has a command called run which will start a container based on a Docker Image. The structure is docker run <i>&lt;options> &lt;image-name></i>.<p>By default, Docker will run a command in the foreground. To run in the background, the option -d needs to be specified.<p><code>docker run -d redis</code><p>By default, Docker will run the latest version available. If a particular version was required, it could be specified as a tag, for example, version 3.2 would be docker run -d redis:3.2.<p>As this is the first time Jane is using the Redis image, it will be downloaded onto the Docker Host machine.</div></div>"
+        }
+    },
+    {
+        "type": "video",
+        "content": {
+            "contentId": "002",
+            "step": "Step 2",
+            "description": "https://www.youtube.com/embed/R-3dfURb2hA",
+            "urlType": "static"
+        }
+    },
+    {
+        "type": "document",
+        "content": {
+            "contentId": "003",
+            "step": "Step 3",
+            "description": "http://www.pdf995.com/samples/pdf.pdf",
+            "urlType": "static"
+        }
+    }
+]

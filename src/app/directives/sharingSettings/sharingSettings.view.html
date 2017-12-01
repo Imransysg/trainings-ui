@@ -1,0 +1,253 @@
+﻿<div class="share_trial signup_form">
+    <div class="know_more_row">
+        <span class="know_more right cursor-pointer" ng-click="helpSection('shareSettings');"><i class="material-icons">info_outline</i>&nbsp;<b>Help</b></span>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="signup_row share_row">
+        <div class="signup_col paddingLeft">
+            <div class="share_everyone share_block" ng-class="{'share_active': public}">
+                <div class="share_everyone_upper">
+                    <md-checkbox class="share_checkbox" ng-model="public" aria-label="Everyone Checkbox">
+                        <i class="material-icons">public</i>
+                        <span>Everyone</span>
+                    </md-checkbox>
+                    <span class="can_view">can view</span>
+                </div>
+                <p class="share_des">(The demo lab will be public and anyone can view your demo lab.)</p>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="signup_row share_row">
+        <div class="share_everyone share_block" ng-class="{'share_active': sharingSettingsObj.collaborators}">
+            <div class="share_everyone_upper">
+                <md-checkbox class="share_checkbox" ng-model="sharingSettingsObj.collaborators" aria-label="Everyone Checkbox">
+                    <i class="material-icons">public</i>
+                    <span>Collaborators</span>
+                </md-checkbox>
+            </div>
+            <p class="share_des">(You can add teams or select users from different organisations and give them view,modify rights.)</p>
+            <md-nav-bar class="collaborators_navbar" md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+                <md-nav-item md-nav-click="goto('Users')" name="Users">
+                    Users
+                </md-nav-item>
+                <md-nav-item md-nav-click="goto('Teams')" name="Teams">
+                    Teams
+                </md-nav-item>
+                <md-nav-item md-nav-click="goto('Organization')" name="Organization">
+                    Organization
+                </md-nav-item>
+                <md-nav-item md-nav-click="goto('Email Domain')" name="Email Domain">
+                    Email Domain Access
+                </md-nav-item>
+            </md-nav-bar>
+            <div class="ext-content">
+                <!-- User Tab Content here -->
+
+                <div class="user_content_main" ng-show="currentNavItem === 'Users'">
+                    <div class="user_content_upper" layout="row">
+                        <div class="organization_id" flex="35">
+                            <md-input-container class="md-block signup_row">
+                                <label class="display-none"></label>
+                                <input type="text" name="organizationID" ng-model="sharingSettingsObj.user.orgID" placeholder="Enter Organization ID" ng-disabled="!sharingSettingsObj.collaborators" />
+                            </md-input-container>
+                        </div>
+                        <div class="user_options_main" flex="65">
+                            <div class="select_user signup_row">
+                                <md-input-container class="md-block signup_row paddingLeft">
+                                    <label class="display-none"></label>
+                                    <input type="text" name="selectedUser" ng-model="sharingSettingsObj.user.selectedUser" placeholder="Enter Email Id..." ng-disabled="!sharingSettingsObj.collaborators" />
+                                </md-input-container>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="user_add_button">
+                                <md-button class="cc-button button-secondary add_user_button" ng-click="addItemToItemGroup('user')" aria-label="Add" ng-disabled="!sharingSettingsObj.collaborators">
+                                    <md-tooltip md-direction="top">Add</md-tooltip>
+                                    Add
+                                </md-button>
+                            </div>
+                        </div>
+                    </div>
+                    <md-list class="existing_users">
+                        <md-list-item class="user_list" ng-repeat="(index, user) in sharedWith | filter : {type: 'user'} : true">
+                            <span class="delete_user" ng-click="deleteSavedItem(user)">
+                                <i class="material-icons">close</i>
+                            </span>
+                            <div class="user_listing_left">
+                                <div class="user_listing_left_inner" layout="row">
+                                    <div class="saved_users" flex="50">
+                                        <p class="user_email">{{user.value.split(':')[0]}}</p>
+                                        <p class="organization_name">{{user.value.split(':')[1]}}</p>
+                                    </div>
+                                    <div class="user_rights" flex="50">
+                                        <div class="user_rights_dropdown">
+                                            <md-select class="user_rights_dropdown" ng-class="{'user_rights_greenLaunch': user.policy === 'greenLaunch', 'user_rights_redlist': user.policy === 'deny'}" ng-model="user.policy" ng-model-options="{trackBy: '$value'}" name="userRights" required>
+                                                <md-option class="user_rights_options" ng-value="permission.id" ng-repeat="permission in permissionList">
+                                                    <b>{{permission.name}}</b>
+                                                    <p>{{permission.des}}</p>
+                                                </md-option>
+                                            </md-select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </md-list-item>
+                    </md-list>
+                </div>
+
+                <!-- User Tab Content over here -->
+                <!-- Team Tab Content here -->
+
+                <div class="user_content_main" ng-show="currentNavItem === 'Teams'">
+                    <div class="user_content_upper" layout="row">
+                        <div class="organization_id" flex="35">
+                            <md-input-container class="md-block signup_row">
+                                <label class="display-none"></label>
+                                <input type="text" name="organizationID" ng-model="sharingSettingsObj.team.orgName" placeholder="Enter Organization Name" ng-disabled="!sharingSettingsObj.collaborators" ng-blur="changeTeamGroupOrg(sharingSettingsObj.team.orgName)" />
+                            </md-input-container>
+                        </div>
+                        <div class="user_options_main" flex="65">
+                            <div class="select_user signup_row">
+                                <md-input-container class="md-block signup_row paddingLeft">
+                                    <label class="display-none"></label>
+                                    <input type="text" name="organizationID" ng-model="sharingSettingsObj.team.selectedTeam" placeholder="Enter team..." ng-disabled="!sharingSettingsObj.collaborators" />
+                                </md-input-container>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="user_add_button">
+                                <md-button class="cc-button button-secondary add_user_button" ng-click="addItemToItemGroup('team')" aria-label="Add" ng-disabled="!sharingSettingsObj.collaborators">
+                                    <md-tooltip md-direction="top">Add</md-tooltip>
+                                    Add
+                                </md-button>
+                            </div>
+                        </div>
+                    </div>
+                    <md-list class="existing_users">
+                        <md-list-item class="user_list" ng-repeat="(index, team) in sharedWith | filter : {type: 'team'} : true">
+                            <span class="delete_user" ng-click="deleteSavedItem(team)">
+                                <i class="material-icons">close</i>
+                            </span>
+                            <div class="user_listing_left">
+                                <div class="user_listing_left_inner" layout="row">
+                                    <div class="saved_users" flex="50">
+                                        <p class="user_email">{{team.value.split(':')[0]}}</p>
+                                        <p class="organization_name">{{team.value.split(':')[1]}}</p>
+                                    </div>
+                                    <div class="user_rights" flex="50">
+                                        <div class="user_rights_dropdown">
+                                            <md-select class="user_rights_dropdown" ng-model="team.policy" ng-model-options="{trackBy: '$value'}" name="teamrRights" required>
+                                                <md-option class="user_rights_options" ng-value="permission.id" ng-repeat="permission in permissionList">
+                                                    <b>{{permission.name}}</b>
+                                                    <p>{{permission.des}}</p>
+                                                </md-option>
+                                            </md-select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </md-list-item>
+                    </md-list>
+                </div>
+                <!-- Team Tab Content over here -->
+                <!-- Organization Tab Content here -->
+
+                <div class="user_content_main" ng-show="currentNavItem === 'Organization'">
+                    <div class="user_content_upper" layout="row">
+                        <div class="user_options_main" flex="100">
+                            <div class="select_user signup_row">
+                                <md-input-container class="md-block signup_row paddingLeft">
+                                    <label class="display-none"></label>
+                                    <input type="text" name="organizationID" ng-model="sharingSettingsObj.organizations.selectedOrganization" placeholder="Enter Organization Name" ng-disabled="!sharingSettingsObj.collaborators" ng-blur="changeTeamGroupOrg(sharingSettingsObj.organizations.selectedOrganization)"
+                                    />
+                                </md-input-container>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="user_add_button">
+                                <md-button class="cc-button button-secondary add_user_button" ng-click="addItemToItemGroup('organization')" aria-label="Add" ng-disabled="!sharingSettingsObj.collaborators">
+                                    <md-tooltip md-direction="top">Add</md-tooltip>
+                                    Add
+                                </md-button>
+                            </div>
+                        </div>
+                    </div>
+                    <md-list class="existing_users">
+                        <md-list-item class="user_list" ng-repeat="(index, org) in sharedWith | filter : {type: 'organization'} : true">
+                            <span class="delete_user" ng-click="deleteSavedItem(org)">
+                                <i class="material-icons">close</i>
+                            </span>
+                            <div class="user_listing_left">
+                                <div class="user_listing_left_inner" layout="row">
+                                    <div class="saved_users" flex="50">
+                                        <p class="user_email">{{org.value}}</p>
+                                    </div>
+                                    <div class="user_rights" flex="50">
+                                        <div class="user_rights_dropdown">
+                                            <md-select class="user_rights_dropdown" ng-model="org.policy" ng-model-options="{trackBy: '$value'}" name="teamrRights" required>
+                                                <md-option class="user_rights_options" ng-if="permission.name === 'ReadOnly' || permission.name === 'Green List'  || permission.name === 'Red List'" ng-value="permission.id" ng-repeat="permission in permissionList">
+                                                    <b>{{permission.name}}</b>
+                                                    <p>{{permission.des}}</p>
+                                                </md-option>
+                                            </md-select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </md-list-item>
+                    </md-list>
+                </div>
+                <!-- Organization Tab Content over here -->
+                <!-- Email Domain Tab Content here -->
+
+                <div class="user_content_main" ng-show="currentNavItem === 'Email Domain'">
+                    <div class="user_content_upper" layout="row">
+                        <div class="user_options_main" flex="100">
+                            <div class="select_user signup_row">
+                                <md-input-container class="md-block signup_row paddingLeft">
+                                    <label class="display-none"></label>
+                                    <input type="text" name="EmailDomain" ng-model="sharingSettingsObj.emailDomain.domain" placeholder="Enter Email Domain..." ng-disabled="!sharingSettingsObj.collaborators" />
+                                </md-input-container>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="user_add_button">
+                                <md-button class="cc-button button-secondary add_user_button" ng-click="addItemToItemGroup('domain')" aria-label="Add" ng-disabled="!sharingSettingsObj.collaborators">
+                                    <md-tooltip md-direction="top">Add</md-tooltip>
+                                    Add
+                                </md-button>
+                            </div>
+                        </div>
+                    </div>
+                    <md-list class="existing_users">
+                        <md-list-item class="user_list" ng-repeat="(index, domain) in sharedWith | filter : {type: 'domain'} : true">
+                            <span class="delete_user" ng-click="deleteSavedItem(domain)">
+                                <i class="material-icons">close</i>
+                            </span>
+                            <div class="user_listing_left">
+                                <div class="user_listing_left_inner" layout="row">
+                                    <div class="saved_users" flex="50">
+                                        <p class="user_email">{{domain.value}}</p>
+                                    </div>
+                                    <div class="user_rights" flex="50">
+                                        <div class="user_rights_dropdown">
+                                            <md-select class="user_rights_dropdown" ng-class="{'user_rights_greenLaunch': domain.policy === 'greenLaunch', 'user_rights_redlist': domain.policy === 'deny'}" ng-model="domain.policy" ng-model-options="{trackBy: '$value'}" name="teamrRights" required>
+                                                <md-option class="user_rights_options" ng-value="permission.id" ng-repeat="permission in permissionList">
+                                                    <b>{{permission.name}}</b>
+                                                    <p>{{permission.des}}</p>
+                                                </md-option>
+                                            </md-select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </md-list-item>
+                    </md-list>
+                </div>
+                <!-- Email Domain Tab Content over here -->
+            </div>
+        </div>
+    </div>
+</div>

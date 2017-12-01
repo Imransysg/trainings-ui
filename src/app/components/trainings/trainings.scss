@@ -1,0 +1,15 @@
+.terminal_main {
+    padding: 0;
+    .terminal_left {
+        background: #fff;
+        padding: 20px;
+        word-wrap: break-word;
+        height: calc(100vh - 147px);
+        overflow: auto;
+    }
+    .terminal_right {
+        background: #383732;
+        padding: 0px;
+        height: calc(100vh - 147px);
+    }
+}

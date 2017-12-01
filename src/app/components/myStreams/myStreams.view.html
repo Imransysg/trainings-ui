@@ -1,0 +1,55 @@
+<div id="stramPage-wrapper height100">
+    <div id="content-wrapper height100" layout="row">
+        <md-content class="main-container trialContainer noPadding height100" id="streamContent" layout-align="center center" layout-padding>
+            <div class='terminal_main' layout="row">
+                <div class='terminal_left' flex="30">
+                    <div class="terminal_div" ng-if="vm.selectedStep.type === 'text'" ng-bind-html="vm.selectedStep.content.description"></div>
+                    <div class="terminal_div" ng-if="vm.selectedStep.type === 'video'">
+                        <div class="video_wrapper" ng-if="vm.selectedStep.content.urlType === 'static'">
+                            <iframe ng-src="{{vm.selectedStep.content.description | trustUrl}}" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                        <div class="video_wrapper" ng-if="vm.selectedStep.content.urlType === 'dynamic'">
+                            <video ng-src="{{vm.selectedStep.content.description | trustUrl}}" controls></video>
+                        </div>
+                    </div>
+                    <div class="terminal_div" ng-if="vm.selectedStep.type === 'document'">
+                        <div class="video_wrapper" ng-if="vm.selectedStep.content.urlType==='static'">
+                            <object width="400" height="400" data="http://www.pdf995.com/samples/pdf.pdf"></object>
+                        </div>
+                    </div>
+                    <div class="button_wrapper" ng-if="vm.trainingStep.length > 1">
+                        <button ng-click="vm.nextStep(vm.selectedStep.stepIndex)" ng-disabled=" vm.continueDisabled">Continue</button>
+                    </div>
+                </div>
+                <div class="terminal_right" flex>
+                    <div class="terminals_tab_row" layout="row">
+                        <span class="terminal_tab cursor-pointer" flex ng-click="vm.terminalToggleFn('terminal')">Terminal</span>
+                        <span class="terminal_tab cursor-pointer" flex ng-click="vm.terminalToggleFn('browser1', 'browserSample1')">Browser1</span>
+                        <span class="terminal_tab cursor-pointer" flex ng-click="vm.terminalToggleFn('browser2', 'browserSample2');">Browser2</span>
+                        <span class="terminal_tab cursor-pointer" flex ng-click="vm.terminalToggleFn('browser3', 'browserSample3');">Browser3</span>
+                        <span class="terminal_tab cursor-pointer" flex ng-click="vm.terminalToggleFn('browser4', 'browserSample4');">Browser4</span>
+                    </div>
+                    <div class="terminal_cntnt">
+                        <div id="terminalSample" ng-show="vm.terminalToggle === 'terminal'"></div>
+                        <div id="browserSample1" ng-show="vm.terminalToggle === 'browser1'">
+                            <!-- <embed ng-src='{{vm.terminal1 | trustUrl}}' style="border:1px solid" width="100%" height="500"> -->
+                            <iframe ng-src='{{vm.terminal1 | trustUrl}}' style="border:1px solid" width="100%" height="500"> </iframe>
+                        </div>
+                        <div id="browserSample2" ng-show="vm.terminalToggle === 'browser2'">
+                            <!-- <embed ng-src='{{vm.terminal2 | trustUrl}}' style="border:1px solid" width="100%" height="500"> -->
+                            <iframe ng-src='{{vm.terminal2 | trustUrl}}' style="border:1px solid" width="100%" height="500"> </iframe>
+                        </div>
+                        <div id="browserSample3" ng-show="vm.terminalToggle === 'browser3'">
+                            <!-- <embed ng-src='{{vm.terminal3 | trustUrl}}' style="border:1px solid" width="100%" height="500"> -->
+                            <iframe ng-src='{{vm.terminal3 | trustUrl}}' style="border:1px solid" width="100%" height="500"> </iframe>
+                        </div>
+                        <div id="browserSample4" ng-show="vm.terminalToggle === 'browser4'">
+                            <!-- <embed ng-src='{{vm.terminal4 | trustUrl}}' style="border:1px solid" width="100%" height="500"> -->
+                            <iframe ng-src='{{vm.terminal4 | trustUrl}}' style="border:1px solid" width="100%" height="500"> </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </md-content>
+    </div>
+</div>

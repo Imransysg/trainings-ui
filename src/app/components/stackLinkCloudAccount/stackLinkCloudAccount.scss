@@ -1,0 +1,246 @@
+﻿    @import '../../../sass/variable';
+    @import '../../../sass/mixin';
+    @import '../../../sass/type';
+    @import '../../../sass/input';
+    @import '../../../sass/table';
+    .link_cloud_account_form {
+        padding: 10px 30px !important;
+        .ad_subheader_left {
+            padding: 0px 0px 10px 0px;
+            .minute_unit_color {
+                font-style: italic;
+                color: #999;
+                font-weight: 700;
+            }
+            .ad_brief_des {
+                margin-top: 10px;
+            }
+        }
+        .link_cloud_content_main {
+            .user_view_content {
+                border: 1px solid #ccc;
+                background: #fafdff;
+                border-radius: 5px;
+                margin: 10px 0px;
+                padding: 10px;
+                md-input-container {
+                    margin: 0px;
+                    textarea {
+                        background: #fff;
+                    }
+                }
+            }
+            .addUserArea {
+                padding: 0px 10px;
+                button {
+                    margin: 0px;
+                    background-color: #3b7ec1;
+                    color: #fff;
+                    padding: 10px;
+                    text-transform: none;
+                    &:hover {
+                        background-color: #336ea9;
+                    }
+                    &[disabled] {
+                        opacity: 0.5;
+                    }
+                }
+            }
+            .md-chips md-chip {
+                padding: 2px 50px 2px 15px;
+                border: 1px solid #09cacb;
+                border-radius: 20px;
+                color: #09cacb;
+                background: transparent;
+                margin: 10px 5px;
+                height: auto;
+                line-height: 1;
+                .md-chip-remove-container {
+                    right: 6px;
+                    line-height: 1;
+                    button.md-chip-remove {
+                        min-height: auto;
+                        width: 10px;
+                        height: 10px;
+                        md-icon {
+                            color: #09cacb;
+                        }
+                    }
+                }
+                &.md-focused {
+                    background: #09cacb;
+                    color: #fff;
+                    .md-chip-remove-container {
+                        button.md-chip-remove {
+                            md-icon {
+                                color: #fff;
+                            }
+                        }
+                    }
+                }
+            }
+            md-chips-wrap {
+                min-height: 100px;
+                background: #fff;
+            }
+            .cloud_account_user_area {
+                .cloud_users {
+                    border: 1px solid #d0dfed;
+                    border-radius: 5px;
+                    background: #fff;
+                    padding: 5px 10px;
+                    margin: 20px 0px;
+                    .cloud_user_heading {
+                        .cloud_account_name {
+                            font-weight: 400;
+                            padding: 2px 50px 2px 15px;
+                            border: 1px solid #09cacb;
+                            border-radius: 20px;
+                            color: #09cacb;
+                            transform: translate(0px, -18px);
+                            -webkit-transform: translate(0px, -18px);
+                            -o-transform: translate(0px, -18px);
+                            -moz-transform: translate(0px, -18px);
+                            background-color: #fff;
+                            transition: 0.2s;
+                            &.configHidden {
+                                transform: none;
+                                -webkit-transform: none;
+                                -o-transform: none;
+                                -moz-transform: none;
+                            }
+                            .cloud_cross_icons {
+                                right: 4px;
+                                i {
+                                    font-size: 18px;
+                                }
+                            }
+                        }
+                        button {
+                            margin: 0px;
+                            text-transform: none;
+                            box-shadow: none;
+                            border: 1px solid #525252;
+                        }
+                    }
+                    .cloudAccountForm {
+                        .cloud_account_nav {
+                            .create_trial_block {
+                                width: 100px;
+                                height: 100px;
+                                background: #fff;
+                                border: 2px dashed #45ace4;
+                                margin-right: 2.4rem;
+                                margin-bottom: 30px;
+                                text-align: center;
+                                cursor: pointer;
+                                float: left;
+                                color: #45ace4;
+                                border-radius: 10px;
+                                &.cloud_tile {
+                                    border: none;
+                                    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+                                    border-radius: 0px;
+                                }
+                                i {
+                                    font-size: 45px;
+                                    color: #45ace4;
+                                }
+                            }
+                        }
+                        .stackNewCloudAccountForm {
+                            padding: 0px 15px;
+                        }
+                        .deploymentMonth {
+                            input {
+                                max-width: 100px;
+                            }
+                        }
+                        .additionDetailCloudAccountFormWrapper {
+                            padding: 0px 15px;
+                        }
+                    }
+                    .additionDetailCloudAccountFormWrapper {
+                        .linkAccountInvBlock {
+                            font-size: 0.93rem;
+                            font-weight: 400;
+                            color: #535353;
+                        }
+                        .linkAccAdditionDetails {
+                            i.cancel-icon {
+                                position: absolute;
+                                right: 0px;
+                                font-size: 12px;
+                                background: #45ace4;
+                                border-radius: 50%;
+                                color: #fff;
+                                padding: 2px;
+                            }
+                        }
+                        .linkProxyDet {
+                            background: #e6f2ff;
+                            border-radius: 5px;
+                            padding: 10px;
+                            md-input-container {
+                                label {
+                                    margin-right: 30px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .main_caption {
+            font-size: 0.9rem;
+        }
+    }
+    
+    .font-bold {
+        font-weight: 700;
+    }
+    
+    .important_text {
+        color: #fe626d;
+    }
+    
+    .text-normal {
+        font-weight: normal;
+    }
+    
+    .ad_brief_des {
+        font-size: 0.8rem;
+        color: #989fa3;
+        font-weight: 400;
+        margin: 0px 0 10px;
+        position: relative;
+        z-index: 2;
+        padding: 0px;
+    }
+    
+    .margin-bottom-20 {
+        margin-bottom: 20px;
+    }
+    
+    .margin-right-20 {
+        margin-right: 20px;
+    }
+    
+    .margin-left-20 {
+        margin-left: 20px;
+    }
+    
+    .margin-top-20 {
+        margin-top: 20px;
+    }
+    
+    .stack_know_more_row {
+        .know_more {
+            &.right {
+                animation: none;
+                b {
+                    font-weight: 700 !important;
+                }
+            }
+        }
+    }

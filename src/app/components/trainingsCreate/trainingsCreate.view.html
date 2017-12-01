@@ -1,0 +1,82 @@
+<div class="create_trials_main create_trainings_main height100" ng-class="{'createTrainingBG': vm.getTrainingFlag() === 'create'}">
+    <div class="training_header text-center text-uppercase position-relative" ng-if="vm.getTrainingFlag() !== 'create'">
+        <h2>Create Training Lab</h2>
+        <md-button class="md-icon-button position-absolute" ng-click="vm.cancel()" aria-label="Close dialog">
+            <i class="material-icons">clear</i>
+        </md-button>
+    </div>
+    <div class="training_content display-block">
+        <div class="modal_dialog_content noPadding" ng-if="vm.getTrainingFlag() !== 'create'">
+            <div class="training_step_main">
+                <div class="training_heading">
+                    <div class="trial_modal_action stack_modal_action right">
+                        <md-button class="button-primary left save_as_draft" ng-click="vm.saveDraft()" ng-disabled="!vm.getDraftVisibility()">
+                            <md-tooltip md-direction="top">Save As Draft</md-tooltip>
+                            Save As Draft
+                        </md-button>
+                        <md-button id="publishDemoLabBtn" class="button-primary publishDemoLab" ng-disabled="vm.getPublishVisibility()" ng-click="vm.publishStack()">
+                            <md-tooltip md-direction="top">Publish Stack</md-tooltip>
+                            Publish
+                        </md-button>
+                    </div>
+                    <h3>Cloud Architecture Overview</h3>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="training_step">
+                    <div class="training_indiv cursor-pointer left marginLeft" ng-click="vm.pageToShow !=1 && vm.helpSection('cancel'); vm.setPageToShow(1);" ng-class="vm.getLabCurriculumTabClass()">
+                        <span>Curriculum builder</span>
+                    </div>
+                    <div class="training_indiv cursor-pointer left" ng-click="vm.pageToShow !=2 && vm.helpSection('cancel'); vm.setPageToShow(2);" ng-class="vm.getLabLandingTabClass()">
+                        <span>Lab Brochure</span>
+
+                    </div>
+                    <div class="training_indiv cursor-pointer left marginRight" ng-click="vm.pageToShow !=3 && vm.helpSection('cancel');vm.setPageToShow(3);" ng-class="vm.getAdvancedTabClass()">
+                        <span>Advanced Details</span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div id="trainingWizard" class="create_trials_scroll create_training_scroll">
+                <div class="create_trainings_scrollinner height100" ng-switch="vm.pageToShow">
+                    <div ng-switch-when="1" class="height100">
+                        <training-lab-curriculum></training-lab-curriculum>
+                    </div>
+                    <div ng-switch-when="2" class="height100">
+                        <training-lab-landing-page></training-lab-landing-page>
+                    </div>
+                    <div ng-switch-when="3" class="height100">
+                        <training-advanced-details></training-advanced-details>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- help div starts here -->
+            <div id="trainingHelp" class="help_section training_help_section noPadding" flex="{{vm.helpsectionWidth}}" ng-class="{'help_section_active': vm.helpMessage}">
+                <div class="help_section_inner">
+                    <h4>Help Guide</h4>
+                    <span class="help_close" ng-click="vm.helpClose();">
+                        <i class="material-icons">close</i>
+                    </span>
+                    <md ng-include src="vm.getHelpPath()"></md>
+                </div>
+            </div>
+        </div>
+        <!-- help div ends here -->
+        <div class="noPadding trainingDaft_main position-relative" ng-if="vm.getTrainingFlag() === 'create'">
+            <md-button class="md-icon-button position-absolute" ng-click="vm.cancel()" aria-label="Close dialog">
+                <i class="material-icons">clear</i>
+            </md-button>
+            <div class="create_trials_scroll create_training_scroll">
+                <div class="heightAuto ">
+                    <h2>Let's warm up with basic information</h2>
+                    <training-lab-landing-page></training-lab-landing-page>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="show_loading" ng-if="vm.showCreateTrainingLoading">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
+</div>

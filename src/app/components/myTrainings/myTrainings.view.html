@@ -1,0 +1,144 @@
+<div class="nav-menu-options">
+    <div class="menu-option">
+        <i class="material-icons">search</i>
+    </div>
+    <div class="menu-option">
+        <i class="material-icons">apps</i>
+    </div>
+    <div class="menu-option">
+        <img src="./img/filter_icon.png" width="24px" height="24px" />
+    </div>
+</div>
+<div class="trial_view_main" layout="row" ng-class="vm.trialsData.length ? '': 'height100 layout-align-center-center'">
+    <div class="create_trial_block" flex-sm="33" flex-gt-sm="25" flex-gt-lg="20" ng-class="vm.trialsData.length ? '': 'no_trials_exist'">
+        <div class="create_trial_block_inner" layout="column">
+            <md-button id="createDemoLabBtn" ng-click="vm.openCreateTrainingDialog('create')">
+                <i class="material-icons">add</i>
+            </md-button>
+            <p class="text-uppercase">Create new Training</p>
+        </div>
+    </div>
+    <div class="trial_block" flex-sm="33" flex-gt-sm="25" flex-gt-lg="20" ng-repeat="(index, trial) in vm.trialsData">
+        <div class="trial_block_inner">
+            <div class="trial_overlay" layout="row" ng-class="{'trial_overlay_active': trial.trialOptions}">
+                <div class="trial_actions" ng-show="!trial.deleteDemoLabFlag">
+                    <div class="close_overlay cursor-pointer" ng-click="vm.hideTrialOptions(trial)">
+                        <i class="material-icons">clear</i>
+                    </div>
+                    <div class="trial_options_menu" layout="row">
+                        <div class="trial_option_div" flex="33" ng-click="vm.openCreateTrialsDialog(trial)">
+                            <div class="options_icon">
+                                <i class="material-icons">edit</i>
+                            </div>
+                            <p>Edit Config</p>
+                        </div>
+                        <div class="trial_option_div" flex="33" ng-click="vm.goToTrial('view', trial.demolab_id)">
+                            <div class="options_icon">
+                                <i class="material-icons">remove_red_eye</i>
+                            </div>
+                            <p>View Activity</p>
+                        </div>
+                        <div class="trial_option_div" flex="33" ng-click="vm.showConfirmDelete(trial)">
+                            <div class="options_icon">
+                                <i id="deleteDemoLab" class="material-icons">delete</i>
+                            </div>
+                            <p>Delete</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="delete_confirmations" ng-show="trial.deleteDemoLabFlag">
+                    <p class="text-uppercase">Are you sure you want to delete this demo lab ?</p>
+                    <div class="confirmation_buttons">
+                        <md-button id="confirmDeleteDemoLabBtn" class="yes_button button-default" type="button" ng-click="vm.deleteDemoLabAction(trial, true)" aria-label="Yes">
+                            Yes
+                        </md-button>
+                        <md-button class="no_button button-default" type="button" ng-click="vm.deleteDemoLabAction(trial, false)" aria-label="No">
+                            No
+                        </md-button>
+                    </div>
+                </div>
+            </div>
+            <div class="trial_inner">
+                <div class="trial_draft" ng-show="trial.status === 'draft'">
+                    <div class="rotate_draft">DRAFT</div>
+                </div>
+                <div class="trial_flag" ng-show="vm.userId!=trial.owner">
+                    <i class="material-icons group_icon">group</i>
+                </div>
+                <div class="trial_options">
+                    <div class="options_icon" ng-click="vm.showTrialOptions(trial)">
+                        <i id="demoLabOptions" class="material-icons">more_vert</i>
+                    </div>
+                </div>
+                <div class="trial_block_header cursor_pointer" ng-click="vm.goToTrial('preview', trial.demolab_id)">
+                    <div class="trial_logo_wrapper" layout="row">
+                        <div ng-repeat="icon in trial.icons track by $index">
+                            <div class="icon">
+                                <img ng-src="{{icon.url | trustUrl}}" alt="Trial Icons" width="60" height="60" />
+                            </div>
+                        </div>
+                    </div>
+                    <h3>{{trial.name}}</h3>
+                </div>
+                <div class="trial_description">
+                    <p class="cursor_pointer" ng-click="vm.goToTrial('preview', trial.demolab_id)">{{trial.description | ellipsis:77}}</p>
+
+                    <div class="trial_info" ng-show="trial.status != 'draft'">
+                        <div class="trial_main_status" layout="row">
+                            <div class="trial_downloads cursor-default" flex="25" layout="row">
+                                <div class="cloud_upload"><img src="./img/cloud_upload.png" width="30" height="30" /></div>
+                                <!-- <div class="status_value">{{trial.no_of_downloads}}</div> -->
+                                <div class="status_value">{{trial.deployment_status ? trial.deployment_status.total : 0}}</div>
+                                <md-tooltip md-direction="bottom">
+                                    Total {{trial.deployment_status ? trial.deployment_status.total : 0}} deployment(s)
+                                </md-tooltip>
+                            </div>
+                            <div class="trial_progress cursor-default" flex="25" layout="row">
+                                <div><span class="circle_progress"></span></div>
+                                <!-- <div class="status_value">{{trial.no_of_running}}</div> -->
+                                <div class="status_value">{{trial.deployment_status ? trial.deployment_status.in_progress : 0}}</div>
+                                <md-tooltip md-direction="bottom">
+                                    {{trial.deployment_status ? trial.deployment_status.in_progress : 0}} deployment(s) in-progress
+                                </md-tooltip>
+                            </div>
+                            <div class="trial_successful cursor-default" flex="25" layout="row">
+                                <div><span class="circle_success"></span></div>
+                                <!-- <div class="status_value">{{trial.no_of_successful}}</div> -->
+                                <div class="status_value">{{trial.deployment_status ? trial.deployment_status.success : 0}}</div>
+                                <md-tooltip md-direction="bottom">
+                                    {{trial.deployment_status ? trial.deployment_status.success : 0}} deployment(s) success
+                                </md-tooltip>
+                            </div>
+                            <div class="trial_failed cursor-default" flex="25" layout="row">
+                                <div><span class="circle_fail"></span></div>
+                                <!-- <div class="status_value">{{trial.no_of_failed}}</div> -->
+                                <div class="status_value">{{trial.deployment_status ? trial.deployment_status.failed : 0}}</div>
+                                <md-tooltip md-direction="bottom">
+                                    {{trial.deployment_status ? trial.deployment_status.failed : 0}} deployment(s) failed
+                                </md-tooltip>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="edit_button" ng-show="trial.status === 'draft'">
+                    <button type="submit" class="cc-button button-secondary md-button md-ink-ripple" ng-click="vm.openCreateTrialsDialog(trial)">Edit Demo Lab</button>
+                </div>
+                <div class="trial_block_footer" ng-show="trial.status != 'draft'">
+                    <div class="trial_recent_status">
+                        <p>Last 5 deployment status</p>
+                        <div>
+                            <a ui-sref="demoLab.logs({demoLabID: trial.demolab_id, deploymentID: deployment.deployment_id})" class="status_bullet" ng-repeat="deployment in trial.lastFiveDeployment.deploymentData track by $index" ng-class="{'circle_success':deployment.deployStatus === 'deploy.success' && deployment.destroyStatus === 'destroy.success', 'circle_fail':deployment.deployStatus === 'deploy.failed' || deployment.destroyStatus === 'destroy.failed', 'circle_progress':deployment.deployStatus === 'deploy.pending' || (deployment.deployStatus === 'deploy.success' && !deployment.destroyStatus)}">
+                                <md-tooltip md-direction="bottom">
+                                    Deployed by <b>{{deployment.userName}}</b> at <b>{{deployment.launchedAt}}</b>
+                                </md-tooltip>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="show_loading" ng-if="vm.trialLoading">
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+</div>

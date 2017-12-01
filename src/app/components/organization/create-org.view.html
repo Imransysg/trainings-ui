@@ -1,0 +1,353 @@
+<div class="signup-box-wrapper">
+    <!--<div class="sysgain_logo">
+        <img src="./img/login-logo.png" alt="Sysgain CI Logo" width="370" height="96" />
+    </div>-->
+    <div class="signup_form createOrg_form">
+        <div class="signup_left_block">
+            <span class="qualdable_logo">
+                <img src="./img/qloudable_logo1.png" alt="Qualdable Logo" width="218" height="120" />
+                <!-- <b>Qualdable</b> -->
+            </span>
+            <h1><span>sig</span>n up for publisher account</h1>
+            <p>Welcome to publisher account setup process!!</p>
+            <p>Fill in the details to request for create new organization</p>
+            <div class="signup_cloud_image">
+                <img src="./img/signup_cloud.png" alt="Qualdable Logo" width="524" height="354" />
+            </div>
+            <div class="publisher_note">
+                <img src="./img/alert.png" width="34" height="34" alt="Alert Image" />
+                <span>A publisher account is needed if you plan to publish/share your demo labs or solutions to the marketplace</span>
+            </div>
+            <!--<div class="already_login">
+                Already have an account&nbsp;?&nbsp;<span>log in</span>
+            </div>-->
+        </div>
+        <div class="signup_right_block createOrgPage">
+            <div class="signup_form_main createOrgPageMain" ng-if="!vm.formSuccess">
+                <div class="UpperText">
+                    <h4>Complete Sign up by creating organization</h4>
+                </div>
+                <div class="custom-tabs-signup">
+                    <div class="tabs-toggle">
+                        <div class="tabs-toggle-buttons" ng-click="vm.toggleTabs(1)" ng-class="[vm.getOrgDetailsClass(), {'active' : vm.selectedTabSignup == 1}]">
+                            <div class="tabs-toggle-buttons-wrapper" layout="row" layout-align="center center">
+                                <i class="material-icons">developer_board</i>
+                                <div class="tabs-toggle-button-text">Organization Details</div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="tabs-toggle-buttons" ng-click="vm.toggleTabs(2)" ng-class="[vm.getPlanDetailsClass(), {'active' : vm.selectedTabSignup == 2}]">
+                            <div class="tabs-toggle-buttons-wrapper" layout="row" layout-align="center center">
+                                <i class="material-icons">attach_money</i>
+                                <div class="tabs-toggle-button-text">Choose Plan</div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="tabs-toggle-buttons" ng-click="vm.toggleTabs(3)" ng-class="[vm.getBilligAddressClass(), {'active' : vm.selectedTabSignup == 3}]">
+                            <div class="tabs-toggle-buttons-wrapper" layout="row" layout-align="center center">
+                                <i class="material-icons">credit_card</i>
+                                <div class="tabs-toggle-button-text">Billing Details</div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="custom-form-views">
+
+                    <div class="custom-form-org-details md-required" ng-show="vm.selectedTabSignup == 1">
+                        <form name="organizationName" novalidate autocomplete="off" ng-submit="">
+                            <md-input-container class="md-block paddingLeft">
+                                <label>Organization Name <span class="doc_brief_des des_custom">(This will be your tenant name.)</span></label>
+
+                                <input data-unique='' data-url='/organizations/orgs/{orgName}/check_name' ng-model="vm.organisationModel.orgName" name="orgName" required placeholder="Enter Organization name" />
+                                <div ng-messages="organizationName.orgName.$error">
+                                    <div ng-message="required">This field is required</div>
+                                    <div ng-message="md-maxlength">Organization name must be less than 30 characters</div>
+                                    <div ng-message="uniqueValidation" role="alert">Organisation name already exists.</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-block paddingLeft">
+                                <label>Organization Description</label>
+                                <textarea name="org_description" ng-model="vm.organisationModel.orgDesc" placeholder="Enter Organization description" rows="3" name="orgName"></textarea>
+                            </md-input-container>
+                        </form>
+                    </div>
+
+
+                    <div class="custom-form-choose-plan" ng-show="vm.selectedTabSignup == 2">
+                        <form name="choosePlan" novalidate autocomplete="off" ng-submit="">
+                            <md-radio-group ng-model="vm.organisationModel.plans" class="md-primary">
+                                <h5>Choose Plan</h5>
+                                <div class="radio-buttons-c" ng-repeat="planType in vm.plansData">
+                                    <md-radio-button value="{{planType.plan.id}}" class="md-primary">{{planType.plan.name}}<span class="custom-badges gray">${{planType.plan.price}}/{{planType.plan.period_unit}}</span></md-radio-button>
+                                    <p>{{planType.plan.description}}</p>
+                                </div>
+                                <!--<div class="radio-buttons-c">
+                                    <md-radio-button value="Business"> Business <span class="custom-badges green">$50 user/month</span></md-radio-button>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat.</p>
+                                    <div class="lower-form" ng-if="vm.organisationModel.plans == 'Business'">
+                                        <div class="number_of_users">
+                                            <md-input-container class="md-block paddingLeft">
+                                                <label>Number of Users</label>
+                                                <input ng-model="vm.organisationModel.numberOfUsers" name="numberofUsers" placeholder="" />
+                                            </md-input-container>
+                                        </div>
+                                        <div class="billing_cycle">
+                                            <md-input-container>
+                                                <label>Billing Cycle</label>
+                                                <md-select ng-model="vm.organisationModel.billingCycle">
+                                                    <md-option>{{size}}</md-option>
+                                                </md-select>
+                                            </md-input-container>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="radio-buttons-c">
+                                    <md-radio-button value="Enterprise">Enterprise<span class="custom-badges blue">$500 user/month</span></md-radio-button>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat.</p>
+                                    <div class="lower-form" ng-if="vm.organisationModel.plans == 'Enterprise'">
+                                        <div class="number_of_users">
+                                            <md-input-container class="md-block paddingLeft">
+                                                <label>Number of Users</label>
+                                                <input type="number" ng-model="vm.organisationModel.numberOfUsers" name="numberofUsers" placeholder="" />
+                                            </md-input-container>
+                                        </div>
+                                        <div class="billing_cycle">
+                                            <md-input-container>
+                                                <label>Billing Cycle</label>
+                                                <md-select ng-model="vm.organisationModel.billingCycle">
+                                                    <md-option></md-option>
+                                                </md-select>
+                                            </md-input-container>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>-->
+                            </md-radio-group>
+                        </form>
+                    </div>
+                    <div class="custom-form-billing" ng-show="vm.selectedTabSignup == 3">
+
+                        <h5>Billing Details</h5>
+                        <form name="billingAddress" novalidate autocomplete="off" ng-submit="">
+                            <md-input-container class="md-block paddingLeft billing-email">
+                                <label>Billing Email Id</label>
+                                <input name="billingEmail" placeholder="Enter email id..." ng-pattern="/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,4}$/" required ng-model="vm.organisationModel.billingEmailId" />
+                                <div ng-messages="billingAddress.billingEmail.$error">
+                                    <div ng-message="required">This field is required</div>
+                                    <div ng-message="pattern">It should be valid email address</div>
+                                </div>
+
+                            </md-input-container>
+                            <!-- <div class="paymentMethod">
+                                <md-radio-group ng-model="vm.organisationModel.paymentMethod">
+                                    <label>Choose Payment Method</label>
+                                    <div layout="row">
+                                        <md-radio-button value="Credit Card" class="payment-options">Credit Card</md-radio-button>
+                                        <md-radio-button value="paypal" class="payment-options">PayPal</md-radio-button>
+                                    </div>
+                                </md-radio-group>
+                            </div> -->
+                            <div class="card-info-wrapper">
+                                <md-input-container class="md-block paddingLeft credit-card-number-input">
+                                    <label>Credit Card Number</label>
+                                    <input ng-model="vm.organisationModel.cardNumber" name="cardNumber" placeholder="Enter card number..." ng-pattern="/^[0-9]{16}$/" md-maxlength="16" required>
+                                    <div ng-messages="billingAddress.cardNumber.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message="pattern">Card Number must be numeric and must contain 16 digits.</div>
+                                    </div>
+                                </md-input-container>
+                                <div class="accepted-card">
+                                    <div class="accepted-card-icons"><img src="./img/cards5.png" alt="Visa Icon" width="130" height="30" /></span><span class="accepted-card-text">Accepted Cards</div>
+                                </div>
+                                <div class="card_information">
+
+                                    <div class="card_validation">
+                                        <label>Valid upto <span class="small-text">(MM/YY)</span></label>
+                                        <div class="valid-date-container" layour="row" layout-align="start start">
+                                        <md-input-container>
+                                            <input type="number" maxlength="2" max="12" ng-model="vm.organisationModel.month" name="exp_month" required ng-pattern="/^[0-9]{2}$/">
+                                            <div ng-messages="billingAddress.exp_month.$error">
+                                                <div ng-message="required">This field is required</div>
+                                                <div ng-message="pattern">Invalid Month</div>
+                                            </div>
+                                        </md-input-container>
+                                        <span class="saperator">/</span>
+                                        <md-input-container>
+                                            <input type="number" maxlength="4" ng-model="vm.organisationModel.year" name="exp_year" required  ng-pattern="/^[0-9]{2}$/">
+                                            <div ng-messages="billingAddress.exp_year.$error">
+                                                <div ng-message="required">This field is required</div>
+                                                <div ng-message="pattern">Invalid Year</div>
+                                            </div>
+                                        </md-input-container>
+                                        </div>
+                                    </div>
+                                    <div class="card_cvv">
+                                        <md-input-container class="md-block paddingLeft">
+                                            <label>CVV</label>
+                                            <input ng-model="vm.organisationModel.cardCvv" name="cardCvv" placeholder="" ng-pattern="/^[0-9]{3}$/" required/>
+                                            <div ng-messages="billingAddress.cardCvv.$error">
+                                                <div ng-message="required">This field is required</div>
+                                                <div ng-message="pattern">Invalid CVV format.</div>
+                                            </div>
+                                        </md-input-container>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                                <div class="choose_country">
+                                    <h6>Choose Country</h6>
+                                    <md-input-container>
+                                        <label></label>
+                                        <md-select name="country" id="country" ng-model="vm.organisationModel.country" ng-change="vm.getStates(vm.organisationModel.country)" placeholder="Select Country">
+                                            <md-option ng-value="country" ng-repeat="country in vm.countries">{{country}}</md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+
+                                <div class="postal_code">
+                                    <h6>Enter Postal Code</h6>
+                                    <md-input-container class="md-block paddingLeft">
+                                        <label></label>
+                                        <input ng-model="vm.organisationModel.postalCode" name="postalCode" placeholder="Enter Postal code" ng-pattern="/^[0-9]{5}$/" md-maxlength="5" />
+                                        <div ng-messages="billingAddress.postalCode.$error">
+                                            <div ng-message="pattern">Invalid postal code.</div>
+                                            <div ng-message="md-maxlength">Length of postal code must be 5 characters.</div>
+                                        </div>
+                                    </md-input-container>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="submit_button signUpOrg" layout="column">
+
+                        <div layout="row" layout-align="end center">
+                            <md-button id="btnOrgSubmit" type="button" class="cc-button button-default" aria-label="Organization Name Skip" ng-click="vm.changeTabs()" ng-if="vm.selectedTabSignup !== 3">
+                                <md-tooltip md-direction="top">Skip</md-tooltip>
+                                Skip
+                            </md-button>
+                            <md-button id="btnOrgSubmit" type="button" class="cc-button button-secondary" aria-label="Organization Name" ng-disabled="vm.createBtnStateDisabled" ng-click="vm.createOrganisation()">
+                                <md-tooltip md-direction="top">Create</md-tooltip>
+                                Create
+                            </md-button>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="email_verified_box">
+                    <p>Your email address has been verified successfully. Please fill the following details to complete the signup process.</p>
+                </div>
+                <h3>Organization Information</h3>
+                <form novalidate name="orgForm" autocomplete="off" ng-submit="orgForm.$valid && vm.createOrganization()">
+                    <div class="signup_form_area">
+                        <div class="signup_main_row position-relative">
+                            <div class="signup_row">
+                                <md-input-container class="md-block signup_col paddingLeft paddingRight">
+                                    <label>Organization Name</label>
+                                    <input ng-model="vm.orgFormFields.name" name="name" placeholder="Enter your organization name here..." required />
+                                    <div ng-messages="orgForm.name.$error">
+                                        <div ng-message="required">This field is required</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div class="signup_row">
+                                <md-input-container class="md-block signup_col paddingLeft paddingRight">
+                                    <label>Description</label>
+                                    <textarea name="description" cols="10" rows="1" ng-model="vm.orgFormFields.description" placeholder="Enter a brief description of your organization here..." required></textarea>
+                                    <div ng-messages="orgForm.description.$error">
+                                        <div ng-message="required">This field is required</div>
+                                    </div>
+                                </md-input-container>
+
+                            </div>
+                            <div class="signup_row">
+                                <md-input-container class="md-block signup_col paddingLeft paddingRight">
+                                    <label>Address</label>
+                                    <textarea name="address" cols="10" rows="1" ng-model="vm.orgFormFields.address" placeholder="Enter organization address here..." required></textarea>
+                                    <div ng-messages="orgForm.address.$error">
+                                        <div ng-message="required">This field is required</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div class="signup_row">
+                                <md-input-container class="md-block signup_col signup_col_left paddingLeft">
+                                    <label>Phone Number</label>
+                                    <input type="tel" name="phoneNumber" ng-model="vm.orgFormFields.phoneNumber" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" placeholder="Enter organization phone number here..." required />
+                                    <div ng-messages="orgForm.phoneNumber.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message="pattern">Must be a valid phone number</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div class="signup_row">
+                                <md-input-container class="md-block signup_col signup_col_right paddingRight">
+                                    <label>Country</label>
+                                    <md-select name="country" id="country" ng-model="vm.orgFormFields.country" ng-change="vm.getStates(vm.orgFormFields.country)" placeholder="Select Country" required>
+                                        <md-option ng-value="country" ng-repeat="country in vm.countries">{{country}}</md-option>
+                                    </md-select>
+                                    <div ng-messages="orgForm.country.$error">
+                                        <div ng-message="required">This field is required</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="signup_row">
+                                <md-input-container class="md-block signup_col signup_col_left paddingLeft">
+                                    <label>State</label>
+                                    <md-select name="state" id="state" ng-model="vm.orgFormFields.state" placeholder="Select State" required>
+                                        <md-option ng-value="state" ng-repeat="state in vm.states">{{state}}</md-option>
+                                    </md-select>
+                                    <div ng-messages="orgForm.state.$error">
+                                        <div ng-message="required">This field is required</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div class="signup_row">
+                                <md-input-container class="md-block signup_col signup_col_right paddingRight">
+                                    <label>City</label>
+                                    <input type="text" name="city" ng-model="vm.orgFormFields.city" placeholder="Enter organization city here..." required />
+                                    <div ng-messages="orgForm.city.$error">
+                                        <div ng-message="required">This field is required</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div class="signup_row">
+                                <md-input-container class="md-block signup_col signup_col_left paddingLeft">
+                                    <label>Zip Code</label>
+                                    <!-- <input type="text" name="zipcode" id="zipCode" ng-blur="vm.getZipData()" ng-model="vm.orgFormFields.zipCode" ng-minlength="5" ng-maxlength="7" autocomplete="off" placeholder="Enter organization zip code here..." required />  -->
+                <!-- <input type="text" name="zipcode" id="zipCode" ng-model="vm.orgFormFields.zipCode" ng-pattern="/^(?=.*\d.*)[A-Za-z0-9]{3,10}$/" autocomplete="off" placeholder="Enter organization zip code here..." required />
+                                    <div ng-messages="orgForm.zipcode.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message="pattern">Must be a valid Zip Code</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div class="clearfix"></div>
+
+                        </div>
+                    </div>
+
+                    <div class="submit_button">
+                        <md-button type="submit" class="cc-button button-primary" ng-disabled="orgForm.$invalid" aria-label="Next">Next
+                            <md-tooltip md-direction="top">Next</md-tooltip>
+                        </md-button>
+                        <md-button class="cancel_button button-default" type="button" ng-click="vm.showConfirm()" aria-label="Cancel">Cancel
+                            <md-tooltip md-direction="top">Cancel</md-tooltip>
+                        </md-button>
+                        <div class="clearfix"></div>
+                    </div>
+                </form> -->
+            </div>
+            <div class="signup_form_success" ng-if="vm.formSuccess">
+                <img src="./img/tick_icon.png" alt="Request Success" width="120" height="120" />
+                <p>We have received your request. We will get back to you soon for account verification. We will get in touch via email id.</p>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

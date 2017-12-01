@@ -1,0 +1,236 @@
+﻿<div class="training_lab_basic_detail_form height100">
+    <div class="signup_form height100">
+        <div class="signup_form_main position-relative height100">
+            <div class="know_more_row stack_know_more_row cursor-pointer position-absolute" ng-if="vm.createTrainingFg !== 'create'">
+                <span class="know_more right lab_brochure cursor-pointer" ng-click="vm.helpSection('basicDetail');">
+                        <i class="material-icons">help_outline</i>
+                </span>
+                <div class="clearfix"></div>
+            </div>
+            <form name="trainingAdvancedDetail" layout="row" class="trainingBasicDetailForm height100">
+                <div class="leftAnchorSection" flex="20" layout="column" ng-if="vm.createTrainingFg !== 'create'">
+                    <div class="anchorElement cursor-pointer" ng-click="vm.goToAnchor('training_adv_configuration')" ng-class=" vm.getTrainingConfigurationClass()">
+                        <div class="anchorTxt"><span class="custom_required">Configuration</span>
+                            <div class="anchorValidate" ng-if="vm.trainingAdvConfigValid"><i class="material-icons">check</i></div>
+                        </div>
+                    </div>
+                    <div class="anchorElement cursor-pointer" ng-click="vm.goToAnchor('training_adv_link_cloud')" ng-class=" vm.getTrainingCloudAccountClass()">
+                        <div class="anchorTxt"><span class="custom_required">Link Cloud Account</span>
+                            <div class="anchorValidate" ng-if="vm.trainingAdvLinkCloudAccValid"><i class="material-icons">check</i></div>
+                        </div>
+                    </div>
+                    <div class="anchorElement cursor-pointer" ng-click="vm.goToAnchor('training_adv_share_settings')" ng-class="vm.getTrainingShareSettingsClass()">
+                        <div class="anchorTxt">Share Settings
+                            <div class="anchorValidate" ng-if="vm.trainingAdvShareSettingsValid"><i class="material-icons">check</i></div>
+                        </div>
+                    </div>
+                    <div class="anchorElement cursor-pointer" ng-click="vm.goToAnchor('training_adv_proj')" ng-class="vm.getTrainingProjDetailsClass()">
+                        <div class="anchorTxt">Project Details
+                            <div class="anchorValidate" ng-if="vm.trainingAdvProjDetailsValid"><i class="material-icons">check</i></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="signup_main_row noPadding position-relative training_main_wrap">
+                    <div class="training_main_section">
+                        <div class="training_form_content">
+                            <div id="training_adv_configuration_id" ng-if="vm.scrollAnchor == 'training_adv_configuration'">
+                                <div class="signup_row">
+                                    <md-input-container class="md-block signup_col paddingLeft">
+                                        <label>Lab Duration<i class="minute_unit_color">(minutes)</i></label>
+                                        <input input-number type="number" ng-model="vm.trainingsModel.configuration.duration" name="advancedDetDuration" required placeholder="Enter the amount of time the Training Lab will stay active for, in minutes." min="0" />
+                                        <div ng-messages="trainingAdvancedDetail.advancedDetDuration.$error">
+                                            <div ng-message="required">This field is required</div>
+                                        </div>
+                                    </md-input-container>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                                <div class="signup_row">
+                                    <md-input-container class="md-block signup_col paddingLeft paddingRight width100">
+                                        <label>Soft & Hard Deployment<i class="minute_unit_color">(minutes)</i></label>
+                                        <div class="deployment_time_row">
+                                            <div class="deployment_time_div paddingLeft">
+                                                <input input-number type="number" name="trainingSoftHardDepTime" ng-model="vm.trainingsModel.configuration.deploymentTime" required placeholder="Select whether the Training Lab will be launched through soft deployment or hard deployment. Click 'Help' for more information."
+                                                    min="0" />
+                                            </div>
+                                            <div class="deployment_time_div paddingRight">
+                                                <md-radio-group name="trainingDeploymentTimeType" ng-model="vm.trainingsModel.configuration.deploymentTimeType" layout="row" required>
+                                                    <md-radio-button value="softlab">Soft Lab Time</md-radio-button>
+                                                    <md-radio-button value="hardlab">Hard Lab Time</md-radio-button>
+                                                </md-radio-group>
+                                            </div>
+                                            <div ng-messages="trainingAdvancedDetail.trainingSoftHardDepTime.$error">
+                                                <div ng-message="required">This field is required</div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+
+                                <div class="signup_row">
+                                    <md-input-container class="md-block signup_col paddingLeft">
+                                        <label>Concurrency Limit</label>
+                                        <input input-number type="number" ng-model="vm.trainingsModel.configuration.concurrencyLimit" name="concurrencyLimit" placeholder="Enter the amount of Training Labs that are allowed to be active at the same time." min="0" required/>
+                                        <div ng-messages="trainingAdvancedDetail.concurrencyLimit.$error">
+                                            <div ng-message="required">This field is required</div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container class="md-block signup_col paddingRight">
+                                        <label>Demo Labs Per User Limit</label>
+                                        <input input-number type="number" name="userLimit" ng-model="vm.trainingsModel.configuration.perUserLimit" placeholder="Enter the amoutn of times an end user can deploy a Training Lab before they are restricted from further deployments." min="0" required/>
+                                        <div ng-messages="trainingAdvancedDetail.userLimit.$error">
+                                            <div ng-message="required">This field is required</div>
+                                        </div>
+                                    </md-input-container>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="signup_row">
+                                    <md-input-container class="md-block signup_col paddingLeft">
+                                        <label>Failure Message</label>
+                                        <textarea class="textarea_short_height" name="trainingFailureMsg" ng-model="vm.trainingsModel.configuration.deploymentFailureMessage" placeholder="Enter a custom message that is shown if the Training Lab fails to deploy, if desired." md-maxlength="150"
+                                            required></textarea>
+                                        <div ng-messages="trainingAdvancedDetail.trainingFailureMsg.$error">
+                                            <div ng-message="required">This field is required</div>
+                                            <div ng-message="md-maxlength">Failure message can not be greater than 150 characters.</div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container class="md-block signup_col paddingRight">
+                                        <label>User Limit & Message</label>
+                                        <textarea class="textarea_short_height" name="trainingUserLimitMsg" ng-model="vm.trainingsModel.configuration.deploymentUserLimitMsg" placeholder="Enter a custom message that is shown if the end user exceeds the Training Labs limit specified above." md-maxlength="150"
+                                            required></textarea>
+                                        <div ng-messages="trainingAdvancedDetail.trainingUserLimitMsg.$error">
+                                            <div ng-message="required">This field is required</div>
+                                            <div ng-message="md-maxlength">User Limit message can not be greater than 150 characters.</div>
+                                        </div>
+                                    </md-input-container>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                                <div class="signup_row">
+                                    <md-input-container class="md-block">
+                                        <label>Concurrency Limit & Message</label>
+                                        <textarea class="textarea_short_height" name="concurrencyLimitMsg" ng-model="vm.trainingsModel.configuration.concurrencyLimitMsg" placeholder="Enter a custom message that is shown when a Training Lab deployment exceeds the limit of concurrent Training Labs specified above."
+                                            md-maxlength="150" required></textarea>
+                                        <div ng-messages="trainingAdvancedDetail.concurrencyLimitMsg.$error">
+                                            <div ng-message="required">This field is required</div>
+                                            <div ng-message="md-maxlength">User Limit message can not be greater than 150 characters.</div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+
+                                <div class="signup_row">
+                                    <!-- <div class="custom_heading">
+                                        <span class="custom_required">Associated Streams</span>
+                                        <div class="doc_brief_des">Select which Streams, if any, that this Training Lab should be associated with.</div>
+                                    </div> -->
+
+                                    <md-input-container class="md-block signup_col paddingLeft width35">
+                                        <label>Associated Streams</label>
+                                        <md-select class="select_new" ng-model="vm.trainingsModel.streams" name="trainingsStreams" required placeholder="Select which Streams, if any, that this Training Lab should be associated with." multiple>
+                                            <md-option ng-repeat="streams in vm.trainingStreams" ng-value="streams.name">{{streams.name}}</md-option>
+                                        </md-select>
+                                        <div ng-messages="trainingAdvancedDetail.trainingsStreams.$error">
+                                            <div ng-message="required">This field is required</div>
+                                        </div>
+                                    </md-input-container>
+                                    <div class="clearfix"></div>
+                                    <div class="training_category_list">
+                                        <label class="list_items" ng-repeat="streams in vm.trainingsModel.streams"><span>{{streams}}</span>
+                                                <i class="material-icons cursor-pointer" ng-click="vm.removeCategoryData(streams)">clear</i>
+                                            </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="training_adv_link_cloud_id" ng-if="vm.scrollAnchor == 'training_adv_link_cloud'">
+                                <!--training lab icon upload start here-->
+                                <div class="signup_row training_file_main" ng-if="vm.createTrainingFg !== 'create'">
+                                    <div class="training_upload_headinig">
+                                        <h4> <span class=" font-bold">Do you want to configure cloud pool by yourself or send to cloud admin for configuring the cloud accounts?</span></h4>
+                                    </div>
+                                    <div class="adv_cloud_account">
+                                        <md-input-container class="md-block paddingLeft">
+                                            <div layout="row" layout-align="start center">
+                                                <md-button class="cofig-yourself button-secondary marginLeft">Configure Yourself</md-button>
+                                                <span class="saperator">OR</span>
+                                                <md-button class="send-req button-secondary">Send request to cloud admin</md-button>
+                                            </div>
+                                        </md-input-container>
+                                    </div>
+                                    <div class="pool_section_main">
+                                        <p><b>Select the cloud pool which you want to use for the training lab</b></p>
+                                        <p>You can select maximum three default cloud accounts. Making cloud pool default will allocate users the cloud accounts according to your preference order.</p>
+                                        <ul class="pool_list noPadding noMargin left width100">
+                                            <li class="left">
+                                                <span class="numbering">1.</span>
+                                                <md-menu>
+                                                    <div class="cloud_pool" ng-click="$mdMenu.open($event)">
+                                                        <label class="select_cloud_pool">Select cloud Pool</label>
+                                                        <div class="cloud_pool_content">
+
+                                                        </div>
+                                                        <span class="change_pool">Change</span>
+                                                    </div>
+                                                    <md-menu-content width="3">
+                                                        <md-menu-item ng-repeat="sectionSel in vm.cloudPool">
+                                                            <h4>{{cloud.name}}</h4>
+                                                            <p>{{cloud.accountAttached}} cloud accounts</p>
+                                                        </md-menu-item>
+                                                    </md-menu-content>
+                                                </md-menu>
+
+
+                                                <!-- <div class="cloudPool_dropdown" ng-repeat="cloud in vm.cloudPool">
+                                                    <h4>{{cloud.name}}</h4>
+                                                    <p>{{cloud.accountAttached}} cloud accounts</p>
+                                                </div> -->
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <!--Training lab icon html end here-->
+                            </div>
+                            <div id="training_adv_share_settings_id" ng-if="vm.scrollAnchor == 'training_adv_share_settings'" class="training_share_settings">
+                                <div ng-include="'./app/components/trainingAdvancedDetails/trainingAdvancedDetailsShareSettings.view.html'"></div>
+                            </div>
+                            <div id="training_adv_proj_id" ng-if="vm.scrollAnchor == 'training_adv_proj'">
+                                <h4>Associated Projects in the training lab</h4>
+                                <div class="projectList_usedSection" ng-if=" vm.trainingsModel.sections.length > 0">
+                                    <table class="projectList_table">
+                                        <thead>
+                                            <tr>
+                                                <th>Project Name</th>
+                                                <th>Upload Via</th>
+                                                <th>Associated Section</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="section in vm.associatedProjectList track by $index">
+                                                <td>{{section.projectName}}</td>
+                                                <td>{{section.type}}</td>
+                                                <td>{{section.title}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="stack_primary_information text-center" ng-if="vm.createTrainingFg === 'create'">
+                                <div class="save_as_draft_buttonDiv">
+                                    <button type="submit" ng-disabled="trainingBasicDetail.$invalid" class="basic_saveDraft button-secondary" ng-click="vm.continueToFill()">Start building lab</button>
+                                </div>
+                                <span class="display-block">OR</span>
+                                <div class="save_as_draft_buttonDiv">
+                                    <button type="submit" ng-disabled="trainingBasicDetail.$invalid" class="continue_shopping" ng-click="vm.continueToFill()"><span class="continue_shopping_text">Save as Draft and exit</span></button>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                        </div>
+                    </div>
+            </form>
+            </div>
+        </div>
+        <div class="show_loading " ng-if="vm.showCreateStackLoading ">
+            <md-progress-circular md-mode="indeterminate "></md-progress-circular>
+        </div>
+    </div>

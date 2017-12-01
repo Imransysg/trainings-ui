@@ -1,0 +1,74 @@
+@import '../../../sass/variable';
+@import '../../../sass/mixin';
+@import '../../../sass/type';
+@import '../../../sass/input';
+@import '../../../sass/table';
+.activity_main {
+    margin: 0 23px;
+    background: #fff;
+    border: 1px solid #e0ecf3;
+    @include border-radius(5px);
+    .activity_left {
+        min-height: 100vh;
+        padding: 16px 0;
+        h4 {
+            margin: 0 0 6px;
+            padding: 0 15px;
+            font-size: 1rem;
+            font-weight: 400;
+            color: #000;
+        }
+        .lab_list {
+            padding: 5px 15px;
+            min-height: 0;
+            margin: 0 0 3px;
+            font-size: 0.9rem;
+            color: #4f5864;
+            border-top: 1px solid #fff;
+            border-bottom: 1px solid #fff;
+            &::before {
+                min-height: 0;
+            }
+            &.lab_list_active {
+                background: #f2f8fd;
+                border-top-color: #e0ecf3;
+                border-bottom-color: #e0ecf3;
+                color: #2196f3;
+                font-weight: 600;
+            }
+            .lab_list_item {
+                position: relative;
+                width: 100%;
+                .notification_count {
+                    position: absolute;
+                    color: #fff;
+                    background: #fc836c;
+                    padding: 0px 6px 2px;
+                    font-size: 0.8rem;
+                    font-weight: 600;
+                    min-width: 18px;
+                    text-align: center;
+                    right: 0;
+                    top: 0;
+                    @include border-radius(4px);
+                }
+                &.lab_list_noti {
+                    padding-right: 30px;
+                    word-wrap: break-word;
+                }
+            }
+        }
+        .lab_subheader {
+            color: #a9b3b6;
+            background: none;
+            margin: 25px 0 5px;
+            font-size: 0.8rem;
+            .md-subheader-inner {
+                padding: 0 15px;
+            }
+        }
+    }
+    .activity_right {
+        border-left: 1px solid #e0ecf3;
+    }
+}

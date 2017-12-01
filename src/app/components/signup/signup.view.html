@@ -1,0 +1,189 @@
+<div class="signup-box-wrapper">
+    <div class="signup_form">
+        <!-- Login left section showing logo and signup breif description -->
+        <div class="signup_left_block">
+            <span class="qualdable_logo">
+                <img src="./img/qloudable_logo1.png" alt="Qualdable Logo" width="218" height="120" />
+                <!-- <b>Qloudable</b> -->
+            </span>
+            <h1><span>sig</span>n up for publisher account</h1>
+            <p>Welcome to publisher account setup process&nbsp;!!</p>
+            <p>Fill in the details to request for access to a publisher account</p>
+            <div class="signup_cloud_image">
+                <md-icon md-font-icon="3d_rotation"></md-icon>
+                <md-icon class="icon_home" aria-label="Home"></md-icon>
+                <img src="./img/signup_cloud.png" alt="Qualdable Logo" width="524" height="354" />
+            </div>
+            <div class="publisher_note">
+                <img src="./img/alert.png" width="34" height="34" alt="Alert Image" />
+                <span>A publisher account is needed if you plan to publish/share your Demo Labs or solutions to the marketplace</span>
+                <div class="clearfix"></div>
+            </div>
+            <div class="already_login">
+                Already have an account&nbsp;?&nbsp;<span ng-click="vm.moveToLogin()"><md-tooltip md-direction="top" aria-label="Login an account">Login an account</md-tooltip>log in</span>
+            </div>
+        </div>
+        <!-- Login left section over here  -->
+
+        <!-- Login right section include signup Form -->
+        <div class="signup_right_block">
+            <!-- Signup form start here -->
+            <div class="signup_form_main" ng-show="!vm.formSuccess">
+                <h3>New to Qloudable</h3>
+                <form novalidate name="signupForm" autocomplete="off" ng-submit="signupForm.$valid && vm.userRegistration()">
+                    <div id="signup" class="signup_form_area">
+                        <div class="signup_main_row position-relative">
+                            <div class="signup_row">
+                                <md-input-container class="md-block signup_col paddingLeft">
+                                    <label>Name</label>
+                                    <input type="text" ng-model="vm.publisher.name" name="name" minlength="4" md-maxlength="50" required placeholder="Enter your name here..." />
+                                    <div ng-messages="signupForm.name.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message-exp="['minlength', 'md-maxlength']">Name must be between 4 and 50 characters long</div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container class="md-block signup_col paddingRight">
+                                    <label>User Name</label>
+                                    <input type="text" name="username" minlength="4" md-maxlength="15" ng-model="vm.publisher.username" data-unique='' data-url='/signup-service/user/username/{username}/exists' required placeholder="Enter your username here..." />
+                                    <div ng-messages="signupForm.username.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message-exp="['minlength', 'md-maxlength']">User Name must be between 4 and 15 characters long</div>
+                                        <div ng-message="uniqueValidation" role="alert">Username already exists.</div>
+                                    </div>
+                                </md-input-container>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="signup_row">
+                                <md-input-container class="md-block signup_col paddingLeft">
+                                    <label>Email</label>
+                                    <input type="email" name="useremail" ng-model="vm.publisher.email" data-unique='' data-url='/signup-service/user/useremail/{useremail}/exists' ng-pattern="/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,4}$/" required placeholder="Enter your email id here..."
+                                    />
+                                    <div ng-messages="signupForm.useremail.$error" role="alert">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message="pattern">It should be valid email address</div>
+                                        <div ng-message="uniqueValidation" role="alert">Email already exists.</div>
+                                        <div ng-message="invalidDomainValidation" role="alert">Social email is not allowed, please use organization email for signup.</div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container class="md-block signup_col paddingRight">
+                                    <label>Phone Number</label>
+                                    <input type="tel" name="phoneNumber" ng-model="vm.publisher.phone" required ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" placeholder="Enter your phone number here..." />
+                                    <div ng-messages="signupForm.phoneNumber.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message="pattern">Must be a valid phone number</div>
+                                    </div>
+                                </md-input-container>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="signup_row">
+                                <md-input-container class="md-block signup_col paddingLeft">
+                                    <label>Password</label>
+                                    <input type="password" name="password" ng-model="vm.publisher.password" required ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/" autocomplete="off" placeholder="Enter your password here..." />
+                                    <div ng-messages="signupForm.password.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message="pattern">Password should be between 8 and 16 characters long and should contain one number, one character and one special character
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container class="md-block signup_col paddingRight">
+                                    <label>Confirm Password</label>
+                                    <div class="input_wrapper_container">
+                                        <input type="password" name="confirmPassword" ng-model="vm.confirmPassword" required ng-blur="vm.checkPassword()" autoComplete="off" placeholder="Re-enter your password here..." />
+                                        <div id="errorPassword" ng-messages="signupForm.confirmPassword.$error">
+                                            <div ng-message="required">This field is required</div>
+                                            <div ng-message="pattern">Password did not match</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </md-input-container>
+
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="signup_row">
+                                <md-input-container class="md-block">
+                                    <label>Organization</label>
+                                    <input type="text" md-maxlength="40" name="organization" ng-model="vm.publisher.organization" required placeholder="Enter your organization name..." />
+                                    <div ng-messages="signupForm.organization.$error">
+                                        <div ng-message="required">This field is required</div>
+                                        <div ng-message="md-maxlength">The name has to be less than 40 characters long.</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div class="signup_row">
+                                <md-input-container class="md-block signup_row">
+                                    <label>Reason for Access</label>
+                                    <input type="text" name="reasonAccess" ng-model="vm.publisher.access_reason" required placeholder="What do you want to access the cloud services" />
+                                    <div ng-messages="signupForm.reasonAccess.$error">
+                                        <div ng-message="required">This field is required</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div class="signup_row">
+                                <md-input-container class="md-block signup_row">
+                                    <label>Requested Access</label>
+                                    <md-select ng-model="vm.publisher.requested_access" ng-model-options="{trackBy: '$value' }" name="requestedAccess" required>
+                                        <!--<md-option selected>trials</md-option>-->
+                                        <md-option ng-value="requestaccess" ng-repeat="requestaccess in vm.requestAccess">{{requestaccess}}</md-option>
+                                    </md-select>
+                                    <div ng-messages="signupForm.requestedAccess.$error">
+                                        <div ng-message="required">This field is required</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div class="signup_row">
+                                <md-input-container class="md-block signup_row accept_license">
+                                    <md-checkbox name="license" ng-model="vm.publisher.tnc" required>
+                                        Accept our
+                                    </md-checkbox>
+                                    <a class="terms_condition_link" ui-sref="termsService({t: 'publisher'})" target="_blank">
+                                        <span>&nbsp;terms and conditions</span>
+                                    </a>
+
+                                    <div ng-messages="signupForm.license.$error" multiple>
+                                        <div ng-message="required">
+                                            You must accept the condition and terms of service before you can proceed.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div class="signup_row">
+                                <div vc-recaptcha key="vm.recaptchaKey"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="submit_button">
+                        <md-button type="submit" class="cc-button button-primary" ng-disabled="signupForm.$invalid" aria-label="Register">
+                            <md-tooltip md-direction="top">Register</md-tooltip>
+                            Register
+                        </md-button>
+                        <md-button class="cancel_button button-default" type="button" ng-click="vm.showConfirm()" aria-label="Cancel">
+                            <md-tooltip md-direction="top">Cancel</md-tooltip>
+                            Cancel
+                        </md-button>
+                        <div class="clearfix"></div>
+                    </div>
+                </form>
+            </div>
+            <!-- Signup form over here -->
+
+            <!-- Email Verification text here -->
+            <div class="signup_form_success" ng-show="vm.formSuccess">
+                <img src="./img/email.png" alt="Request Success" width="" height="" />
+                <p>We have sent email to <span class="signup_email">{{vm.signupFormFields.email}}</span> to confirm the validity of your email address. Click on the link in the mail to verify.</p>
+                <div class="resend_email_box">
+                    <p>Have not received email? <span class="resend_email_link">Resend Confirmation mail</span></p>
+                </div>
+            </div>
+            <!-- Email Verification text over here -->
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<!-- Showing loader while logged in  -->
+<div class="show_loading" ng-if="vm.showLoading">
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+</div>
+
+<!-- Showing loader while logged in over here -->

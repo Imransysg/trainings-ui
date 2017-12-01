@@ -1,0 +1,85 @@
+@import '../../../sass/variable';
+@import '../../../sass/mixin';
+@import '../../../sass/type';
+@import '../../../sass/input';
+.login-box-wrapper {
+    .signup_form {
+        .submit_button {
+            position: $position-static;
+            background: none;
+            border: none;
+            padding: 0;
+            &.submit_button_alpha {
+                margin: 13px 0 0;
+            }
+            button {
+                float: left;
+                margin: 0;
+                min-width: 115px;
+            }
+        }
+    }
+    .already_login {
+        span {
+            cursor: pointer;
+        }
+    }
+    .signup_cloud_image {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+    }
+    .signup_left_block {
+        >p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+    }
+    .signup_right_block {
+        p.forgot_password {
+            padding: 0;
+            text-align: right;
+            font-size: 0.93rem;
+            color: #3b7ec1;
+            margin: 0;
+        }
+    }
+    p {
+        &.having_problem {
+            color: #959595;
+            font-size: 15px !important;
+            padding: 0 !important;
+            //margin: 40px 0 0;
+            margin: 27px 0 0;
+            span {
+                color: #3b7ec1;
+            }
+        }
+    }
+    .login_form_main {
+        padding-right: 125px;
+    }
+}
+
+.show_loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    -o-align-items: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    -o-justify-content: center;
+    z-index: 10;
+}

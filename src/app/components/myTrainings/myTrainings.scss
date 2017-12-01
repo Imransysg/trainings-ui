@@ -1,0 +1,39 @@
+.terminal_main {
+    padding: 0;
+    .terminal_left {
+        background: #fff;
+        padding: 20px;
+        word-wrap: break-word;
+        height: calc(100vh - 60px);
+        overflow: auto;
+    }
+    .terminal_right {
+        padding: 0px;
+        height: calc(100vh - 60px);
+        .terminal_tab {
+            max-width: 90px;
+            color: #fff;
+            background: #383732;
+            padding: 4px 6px;
+            margin-right: 2px;
+        }
+        .add_terminal {
+            background: none;
+            border: none;
+            color: #fff;
+            font-weight: 700;
+            padding: 0;
+            min-height: 20px;
+            line-height: 20px;
+        }
+        .terminal {
+            background: #383732;
+            .xterm-viewport {
+                background: #383732;
+            }
+        }
+        .terminals_tab_row {
+            background: #222;
+        }
+    }
+}

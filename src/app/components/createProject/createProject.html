@@ -1,0 +1,165 @@
+﻿<div class="create_project_main">
+    <md-toolbar>
+        <div class="md-toolbar-tools project_toolbar">
+            <h2>{{vm.projectCreate.projectName ? 'Update Project' : 'Create Project'}}
+            </h2>
+            <md-button class="md-icon-button edit-icons" ng-show="vm.projectMode === 'readOnly'" aria-label="Close dialog" ng-click="vm.editProject();">
+                <i class="material-icons">border_color</i>
+            </md-button>
+            <md-button class="md-icon-button edit-icons" aria-label="Close dialog" ng-show="vm.projectMode === 'readOnly' || vm.projectMode === 'editable'" ng-click="vm.cancel('Are you sure want to delete this Project.', 'delete_project')">
+                <i class="material-icons">delete</i>
+            </md-button>
+            <span flex></span>
+            <md-button class="md-icon-button project_cancel_button" ng-click="vm.projectMode === 'readOnly' ? vm.confirmYes() : vm.cancel('All unsaved changes will be discarded. Click yes to exit.', 'discard_changes')" aria-label="Close dialog">
+                <i class="material-icons">clear</i>
+            </md-button>
+
+        </div>
+    </md-toolbar>
+    <md-dialog-content class="trial_content display-block">
+        <div id="projectWizard" class="create_project_scroll">
+            <div class="create_project_scrollinner">
+                <div class="createProjectMainForm">
+                    <div class="createProjectWrapper">
+                        <form novalidate name="newProjectForm" autocomplete="off" ng-submit="newProjectForm.$valid">
+                            <div class="signup_form trial_advanced_detail">
+                                <div class="signup_form_main">
+                                    <div class="signup_main_row position-relative noPadding">
+                                        <div class="signup_row">
+                                            <md-input-container class="md-block signup_col paddingLeft">
+                                                <label>Project Name</label>
+                                                <input type="text" ng-model="vm.projectCreate.projectName" name="projectName" required placeholder="Enter Project Name" ng-disabled="vm.projectMode === 'readOnly'" />
+                                                <div ng-messages="newProjectForm.projectName.$error" ng-if="newProjectForm.projectName.$touched">
+                                                    <div ng-message="required">This field is required</div>
+                                                </div>
+                                            </md-input-container>
+
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="signup_row">
+                                            <md-input-container class="md-block">
+                                                <label>Project Description</label>
+                                                <input type="text" ng-model="vm.projectCreate.projectDescription" name="projectDesc" required placeholder="Enter Project Description" ng-disabled="vm.projectMode === 'readOnly'" />
+                                                <div ng-messages="newProjectForm.projectDesc.$error" ng-if="newProjectForm.projectDesc.$touched">
+                                                    <div ng-message="required">This field is required</div>
+                                                </div>
+                                            </md-input-container>
+                                            <div class="clearfix"></div>
+                                        </div>
+
+                                        <div class="signup_row">
+                                            <md-input-container class="md-block">
+                                                <label class="md-required">Select Terraform/OCI version</label>
+                                                <div class="searchable_dropdown">
+                                                    <md-select id="versions" ng-model="vm.projectCreate.terraformVersion" ng-model-options="{trackBy: '$value'}" name="terraformVer" ng-disabled="vm.projectMode === 'readOnly'" required placeholder="Select version" class="md-no-asterisk noMargin tVersionSelect">
+                                                        <md-option value="latest">Terraform Version 0.10.5 & OCI Provider 2.0.0</md-option>
+                                                        <!--<md-option value="T_0.10.4-OCI_1.0.16">Terraform Version 0.10.4 & OCI Provider 1.0.16</md-option>-->
+                                                    </md-select>
+                                                    <span class="dropdown_icon" set-input-focus='versions'>&nbsp;</span>
+                                                </div>
+                                                <div ng-messages="newProjectForm.terraformVer.$error" ng-if="newProjectForm.terraformVer.$touched">
+                                                    <div ng-message="required">This field is required</div>
+                                                </div>
+                                            </md-input-container>
+                                            <div class="clearfix"></div>
+                                        </div>
+
+                                        <div class="signup_row">
+                                            <md-input-container class="md-input-has-value md-block" ng-class="{ 'md-input-invalid' : newProjectForm.projectUploadMethod.$invalid  && newProjectForm.$submitted  }">
+                                                <label class="md-required" translate>Fetch Project Details From</label>
+
+                                                <md-radio-group name="projectUploadMethod" ng-model="vm.projectCreate.projectType" layout="row" required>
+                                                    <md-radio-button value="github" ng-disabled="vm.projectMode === 'readOnly' && vm.projectCreate.projectType === 'zip'">GitHub Account</md-radio-button>
+                                                    <md-radio-button value="zip" ng-click="vm.projectMode !== 'readOnly' && vm.clearProjectGithubDet()" ng-disabled="vm.projectMode === 'readOnly' && vm.projectCreate.projectType === 'github'">Upload Project Zip File</md-radio-button>
+                                                </md-radio-group>
+
+                                                <div ng-messages="newProjectForm.projectUploadMethod.$error" ng-if="newProjectForm.projectUploadMethod.$touched">
+                                                    <div ng-message="required">This field is required</div>
+                                                </div>
+                                            </md-input-container>
+
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="marginTop" ng-show="vm.projectCreate.projectType==='github'">
+                                            <div class="signup_row">
+                                                <md-input-container class="md-block signup_col paddingLeft">
+                                                    <label>Github Account Name</label>
+                                                    <input type="text" name="gitAccountName" ng-model="vm.gitProjectDetails.githubAccountName" required placeholder="Enter Github Account Name" ng-disabled="vm.projectMode === 'readOnly'" />
+                                                    <div ng-messages="newProjectForm.gitAccountName.$error" ng-if="newProjectForm.gitAccountName.$touched">
+                                                        <div ng-message="required">This field is required</div>
+                                                    </div>
+                                                </md-input-container>
+
+                                                <md-input-container class="md-block signup_col paddingRight">
+                                                    <label>Select Repo</label>
+                                                    <input type="text" ng-model="vm.gitProjectDetails.githubRepoName" name="repo" required placeholder="Select Repo" ng-disabled="vm.projectMode === 'readOnly'" />
+                                                    <div ng-messages="newProjectForm.repo.$error" ng-if="newProjectForm.repo.$touched">
+                                                        <div ng-message="required">This field is required</div>
+                                                    </div>
+                                                </md-input-container>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="signup_row">
+                                                <md-input-container class="md-block signup_col paddingLeft">
+                                                    <label>Select Branch</label>
+                                                    <input type="text" name="branch" ng-model="vm.gitProjectDetails.githubRepoBranch" required placeholder="Select Branch" ng-disabled="vm.projectMode === 'readOnly'" />
+                                                    <div ng-messages="newProjectForm.branch.$error" ng-if="newProjectForm.branch.$touched">
+                                                        <div ng-message="required">This field is required</div>
+                                                    </div>
+                                                </md-input-container>
+                                                <md-input-container class="md-block signup_col paddingRight">
+                                                    <label>Select Subfolder</label>
+                                                    <input type="text" ng-model="vm.gitProjectDetails.githubSubfolderName" name="repo" placeholder="Select Subfolder" ng-disabled="vm.projectMode === 'readOnly'" />
+                                                </md-input-container>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="marginTop" ng-show="vm.projectCreate.projectType==='zip'">
+                                            <div class="upload_videos_cntnt" flex="20">
+                                                <input type="file" ng-disabled="vm.projectMode === 'readOnly'" onchange="angular.element(this).scope().vm.uploadProjectZip(this)" ng-disabled="vm.zipProjectDetails.title" accept=".rar,.7z,application/octet-stream,application/zip,application/x-gzip,application/x-tar,application/x-zip-compressed,application/x-rar-compressed"
+                                                />
+                                                <md-button class="cc-button button-secondary capitalize" aria-label="Upload Zip File" ng-disabled="vm.zipProjectDetails.title">
+                                                    <md-tooltip md-direction="top">Upload Zip File</md-tooltip>
+                                                    Upload Zip File
+                                                </md-button>
+                                            </div>
+                                            <div class="video_list_main">
+                                                <div class="video_list" ng-if="vm.zipProjectDetails.title">
+                                                    <i class="material-icons clear_icon cursor-pointer" ng-click="vm.projectMode !== 'readOnly' && vm.removeZip()">clear</i>
+                                                    <div class="video_name">
+                                                        <i class="material-icons">book</i>
+                                                        <label>{{vm.zipProjectDetails.title}}</label>
+
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row" class="project_modal_action">
+        <div class="trial_action_div">
+            <md-button type="submit" class="cc-button button-secondary right marginRight" ng-disabled="vm.projectMode === 'readOnly' || vm.getCreateProjectValidity()" aria-label="Create Project" ng-click="vm.projectMode === 'readOnly' || vm.projectMode === 'editable' ? vm.updateProject() : vm.createProject()">
+                <md-tooltip md-direction="top">{{vm.projectMode === 'readOnly' || vm.projectMode === 'editable' ? 'Update Project' : 'Create Project'}}</md-tooltip>
+                {{vm.projectMode === 'readOnly' || vm.projectMode === 'editable' ? 'Update Project' : 'Create Project'}}
+            </md-button>
+            <md-button class="cc-button button-default right" aria-label="Cancel Project" ng-click="vm.projectMode === 'readOnly' ? vm.confirmYes() : vm.cancel('All unsaved changes will be discarded. Click yes to exit.', 'discard_changes')">
+                <md-tooltip md-direction="top">Cancel</md-tooltip>
+                Cancel
+            </md-button>
+            <div class="clearfix"></div>
+        </div>
+    </md-dialog-actions>
+</div>
+<div class="show_loading" ng-if="vm.showProjectLoading">
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+</div>

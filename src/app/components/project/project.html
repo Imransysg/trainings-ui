@@ -1,0 +1,123 @@
+<div id="page-wrapper">
+
+    <toolbar></toolbar>
+    <div id="content-wrapper" layout="row">
+        <sidemenu id="sidebar-wrapper" layout="column"></sidemenu>
+        <md-content class="main-container trialContainer" id="projectContent" layout-align="center center" layout-padding>
+            <div class="trial_view_main" layout="row" ng-class="vm.projectDetailsObj.savedProjects.length ? 'project_main_view': 'height100 layout-align-center-center'" >
+                <div class="create_trial_block" flex-sm="33" flex-gt-sm="25" flex-gt-lg="20" ng-class="vm.projectDetailsObj.savedProjects.length ? '': 'no_trials_exist'">
+                    <div class="create_trial_block_inner" layout="column">
+                        <md-button ng-click="vm.openCreateProjectDialog()">
+                            <i class="material-icons">add</i>
+                        </md-button>
+                        <p class="text-uppercase">Create New Project</p>
+                    </div>
+                </div>
+                <div class="trial_block" flex-sm="33" flex-gt-sm="25" flex-gt-lg="20" ng-repeat="(index, project) in vm.projectDetailsObj.savedProjects">
+                    <div class="trial_block_inner">
+                        <div class="trial_overlay" layout="row" ng-class="{'trial_overlay_active': project.trialOptions}">
+                            <div class="trial_actions" ng-show="!project.deleteDemoLabFlag">
+                                <div class="close_overlay cursor-pointer" ng-click="vm.hideTrialOptions(project)">
+                                    <i class="material-icons">clear</i>
+                                </div>
+                                <div class="trial_options_menu" layout="row" layout-align="center top">
+                                    <div class="trial_option_div" flex="33" ng-click="vm.openCreateProjectDialog(project, 'editable')">
+                                        <div class="options_icon">
+                                            <i class="material-icons">edit</i>
+                                        </div>
+                                        <p>Edit Project</p>
+                                    </div>
+                                    <div class="trial_option_div" flex="33" ng-click="vm.showConfirmDelete(project)">
+                                        <div class="options_icon">
+                                            <i class="material-icons">delete</i>
+                                        </div>
+                                        <p>Delete</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="delete_confirmations" ng-show="project.deleteDemoLabFlag">
+                                <p class="text-uppercase">Are you sure want to delete this Project?</p>
+                                <div class="confirmation_buttons">
+                                    <md-button class="yes_button button-default" type="button" ng-click="vm.deleteDemoLabAction(project, true)" aria-label="Yes">
+                                        Yes
+                                    </md-button>
+                                    <md-button class="no_button button-default" type="button" ng-click="vm.deleteDemoLabAction(project, false)" aria-label="No">
+                                        No
+                                    </md-button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="trial_inner">
+                            <div class="trial_options">
+                                <div class="options_icon" ng-click="vm.showTrialOptions(project)">
+                                    <i class="material-icons">more_vert</i>
+                                </div>
+                            </div>
+                            <div class="trial_block_header cursor_pointer project_block_header">
+                                <!-- <span class="project_icon left">
+                                    <i class="material-icons">assignment</i>    
+                                </span> -->
+                                <div class="trial_logo_wrapper" layout="row" layout-align="center center">
+                                    <!-- <div ng-repeat="icon in trial.icons track by $index"> -->
+                                    <div class="icon">
+                                        <img ng-src="./img/oracle_logo.png" alt="Oracle Logo" width="50" height="50" />
+                                    </div>
+                                    <div class="icon plus_icon">
+                                        <i class="material-icons">add</i>
+                                    </div>
+                                    <div class="icon">
+                                        <img ng-src="./img/terraform.png" alt="Oracle Logo" width="50" height="50" />
+                                    </div>
+                                    <!-- </div> -->
+                                </div>
+                                <div class="project_name_right" ng-click="vm.openCreateProjectDialog(project, 'readOnly')">
+                                    <h3>{{project.projectName}}</h3>
+                                    <span>({{project.project_id}})</span>
+                                </div>
+
+                            </div>
+                            <div class="trial_description">
+                                <p class="cursor_pointer">{{project.projectDescription | ellipsis:57}}</p>
+                            </div>
+                            <div class="trial_block_footer project_footer" ng-class="{'zip_project': project.projectType == 'zip'}">
+                                <div class="git_project" ng-if="project.projectType == 'github'">
+                                    <div class="repo_block">
+                                        <div class="image_wrap_pro pull-left">
+                                            <img src="./img/repo.png" alt="GitHub Logo" width="25" height="25" />
+                                        </div>
+                                        <div class="repo_branch"><span>Repo:</span><span>{{project.projectDetails.githubRepoName | ellipsis:25}}</span></div>
+                                        <md-tooltip md-direction="bottom">{{project.projectDetails.githubRepoName}}</md-tooltip>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="branch_block">
+                                        <div class="image_wrap_pro pull-left">
+                                            <img src="./img/branch.png" alt="Branch Logo" width="25" height="25" />
+                                        </div>
+                                        <div class="repo_branch"><span>Branch:</span><span>{{project.projectDetails.githubRepoBranch | ellipsis:23}}</span></div>
+                                        <md-tooltip md-direction="bottom">{{project.projectDetails.githubRepoBranch}}</md-tooltip>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="zip_project" ng-if="project.projectType == 'zip'">
+                                    <div class="zip_block">
+                                        <div class="image_wrap_pro pull-left">
+                                            <img src="./img/zip.png" alt="Zip Logo" width="25" height="25" />
+                                        </div>
+                                        <div class="repo_branch"><span>Zip:</span><span>{{project.projectDetails.title | ellipsis:28}}</span></div>
+                                        <div class="clearfix"></div>
+                                        <md-tooltip md-direction="bottom">{{project.projectDetails.title}}</md-tooltip>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- </div> -->
+            <div class="show_loading" ng-if="vm.showProjectLoading">
+                <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+            </div>
+        </md-content>
+    </div>
+</div>

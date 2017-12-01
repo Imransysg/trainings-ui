@@ -1,0 +1,62 @@
+﻿@import '../../../sass/variable';
+@import '../../../sass/mixin';
+@import '../../../sass/type';
+@import '../../../sass/input';
+@import '../../../sass/table';
+.training_share_settings {
+    .know_more_row {
+        display: none;
+    }
+}
+
+.custom_heading {
+    color: #535353;
+    font-weight: 400;
+    opacity: 1;
+    font-size: 0.93rem;
+    margin-bottom: 10px;
+    .doc_brief_des {
+        padding: 0px;
+        margin: 0px;
+    }
+    .saperator {
+        color: #8f99a7;
+    }
+}
+
+.projectList_usedSection {
+    .projectList_table {
+        border: 1px solid #dcecff;
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #dcecff;
+            color: #222;
+            font-weight: normal;
+        }
+        th {
+            background: #f1f6ff
+        }
+    }
+}
+
+.pool_section_main {
+    ul.pool_list {
+        li {
+            span.numbering,
+            .cloud_pool {
+                display: inline-block;
+                vertical-align: middle;
+            }
+            .cloud_pool {
+                width: 200px;
+                height: 200px;
+                border: 1px dashed #aaa;
+                box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+                -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+                -moz-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+            }
+        }
+    }
+}

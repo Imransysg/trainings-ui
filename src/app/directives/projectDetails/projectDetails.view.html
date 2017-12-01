@@ -1,0 +1,171 @@
+﻿<div class="signup_form trial_advanced_detail">
+    <div class="signup_form_main">
+        <div class="know_more_row"><span class="know_more right cursor-pointer" ng-click="helpSection('projectDetail');"><i class="material-icons">info_outline</i>&nbsp;<b>Help</b></span>
+            <div class="clearfix"></div>
+        </div>
+        <div class="signup_row existing_project_row">
+            <div class="doc_brief_des">The demo labs are deployed with Terraform templates. For more information, please click 'Help'</div>
+            <md-input-container class="md-block signup_col paddingLeft">
+                <label>Select a existing project that will be used to deploy the demo lab</label>
+                <div class="searchable_dropdown">
+                    <md-autocomplete id="existingProjectList" md-no-cache="false" md-clear-button="false" md-selected-item="projectDetailsObj.selectedProject" md-search-text="projectDetails.searchText" md-selected-item-change="selectedItemChangeProject(item)" md-items="item in querySearchProject(projectDetails.searchText)"
+                        md-item-text="item.projectName" md-min-length="0" placeholder="Select a project">
+                        <md-item-template>
+                            <span md-highlight-text="projectDetails.searchText" md-highlight-flags="i">{{item.projectName}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            No projects matching"{{projectDetails.searchText}}" were found.
+                        </md-not-found>
+                    </md-autocomplete>
+                    <span class="dropdown_icon" set-input-focus='existingProjectList'>&nbsp;</span>
+                </div>
+            </md-input-container>
+            <div class="signup_col paddingRight position-relative" ng-if="showProjectCreatedTooltip">
+                <span class="project_created_tooltip position-absolute">Your Project has been created and selected for deployment</span>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="or_divider">
+            <span>OR</span>
+        </div>
+    </div>
+</div>
+
+<form novalidate name="newProjectForm" autocomplete="off" ng-submit="newProjectForm.$valid">
+    <div class="signup_form trial_advanced_detail">
+        <div class="signup_form_main">
+            <div class="signup_row create_new_project_upper">
+                <h4>Create a new project to deploy the demo lab</h4>
+            </div>
+            <div class="signup_main_row position-relative noPadding">
+                <div class="signup_row">
+                    <md-input-container class="md-block signup_col paddingLeft">
+                        <label>Project Name</label>
+                        <input type="text" ng-model="projectCreate.projectName" name="projectName" required placeholder="Enter Project Name" />
+                        <div ng-messages="newProjectForm.projectName.$error" ng-if="newProjectForm.projectName.$touched">
+                            <div ng-message="required">This field is required</div>
+                        </div>
+                    </md-input-container>
+
+                    <div class="clearfix"></div>
+                </div>
+                <div class="signup_row">
+                    <md-input-container class="md-block">
+                        <label>Project Description</label>
+                        <input type="text" ng-model="projectCreate.projectDescription" name="projectDesc" required placeholder="Enter Project Description" />
+                        <div ng-messages="newProjectForm.projectDesc.$error" ng-if="newProjectForm.projectDesc.$touched">
+                            <div ng-message="required">This field is required</div>
+                        </div>
+                    </md-input-container>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="signup_row">
+                    <md-input-container class="md-block">
+                        <label class="md-required">Select Terraform/OCI version</label>
+                        <div class="searchable_dropdown">
+                            <md-select id="versions" ng-model="projectCreate.terraformVersion" ng-model-options="{trackBy: '$value'}" name="terraformVer" required placeholder="Select version" class="md-no-asterisk noMargin tVersionSelect" ng-disabled="true">
+                                <md-option value="latest">Terraform Version 0.10.5 & OCI Provider 2.0.0</md-option>
+                                <!--<md-option value="T_0.10.4-OCI_1.0.16">Terraform Version 0.10.4 & OCI Provider 1.0.16</md-option>-->
+                            </md-select>
+                            <span class="dropdown_icon" set-input-focus='versions'>&nbsp;</span>
+                        </div>
+                        <div ng-messages="newProjectForm.terraformVer.$error" ng-if="newProjectForm.terraformVer.$touched">
+                            <div ng-message="required">This field is required</div>
+                        </div>
+                    </md-input-container>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="signup_row">
+                    <md-input-container class="md-input-has-value md-block" ng-class="{ 'md-input-invalid' : newProjectForm.projectUploadMethod.$invalid  && newProjectForm.$submitted  }">
+                        <label class="md-required" translate>Fetch Project Details From</label>
+
+                        <md-radio-group name="projectUploadMethod" ng-model="projectCreate.projectType" layout="row" required>
+                            <md-radio-button value="github" ng-click="">GitHub Account</md-radio-button>
+                            <md-radio-button value="zip" ng-click="clearProjectGithubDet()">Upload Project Zip File</md-radio-button>
+                        </md-radio-group>
+
+                        <div ng-messages="newProjectForm.projectUploadMethod.$error" ng-if="newProjectForm.projectUploadMethod.$touched">
+                            <div ng-message="required">This field is required</div>
+                        </div>
+                    </md-input-container>
+
+                    <div class="clearfix"></div>
+                </div>
+                <div class="marginTop" ng-show="projectCreate.projectType==='github'">
+                    <div class="signup_row">
+                        <md-input-container class="md-block signup_col paddingLeft">
+                            <label>Github Account Name</label>
+                            <input type="text" name="gitAccountName" ng-model="gitProjectDetails.githubAccountName" required placeholder="Enter Github Account Name" />
+                            <div ng-messages="newProjectForm.gitAccountName.$error" ng-if="newProjectForm.gitAccountName.$touched">
+                                <div ng-message="required">This field is required</div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container class="md-block signup_col paddingRight">
+                            <label>Select Repo</label>
+                            <input type="text" ng-model="gitProjectDetails.githubRepoName" name="repo" required placeholder="Select Repo" />
+                            <div ng-messages="newProjectForm.repo.$error" ng-if="newProjectForm.repo.$touched">
+                                <div ng-message="required">This field is required</div>
+                            </div>
+                        </md-input-container>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="signup_row">
+                        <md-input-container class="md-block signup_col paddingLeft">
+                            <label>Select Branch</label>
+                            <input type="text" name="branch" ng-model="gitProjectDetails.githubRepoBranch" required placeholder="Select Branch" />
+                            <div ng-messages="newProjectForm.branch.$error" ng-if="newProjectForm.branch.$touched">
+                                <div ng-message="required">This field is required</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-block signup_col paddingRight">
+                            <label>Select Subfolder</label>
+                            <input type="text" ng-model="gitProjectDetails.githubSubfolderName" name="subfolder" placeholder="Select Subfolder" />
+                        </md-input-container>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="marginTop" ng-show="projectCreate.projectType==='zip'">
+                    <div class="upload_videos_cntnt" flex="20">
+                        <input id="uploadZipInput" type="file" onchange="angular.element(this).scope().uploadProjectZip(this)" ng-disabled="zipProjectDetails.title" accept=".rar,.7z,application/octet-stream,application/zip,application/x-gzip,application/x-tar,application/x-zip-compressed,application/x-rar-compressed"
+                        />
+                        <md-button class="cc-button button-secondary capitalize" aria-label="Upload Zip File" ng-disabled="zipProjectDetails.title">
+                            <md-tooltip md-direction="top">Upload Zip File</md-tooltip>
+                            Upload Zip File
+                        </md-button>
+                    </div>
+                    <div class="video_list_main">
+                        <div class="video_list" ng-if="zipProjectDetails.title">
+                            <i class="material-icons clear_icon cursor-pointer" ng-click="removeZip()">clear</i>
+                            <div class="video_name">
+                                <i class="material-icons">book</i>
+                                <label>{{zipProjectDetails.title}}</label>
+
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="signup_row">
+                    <div class="project_creation_buttons right">
+                        <md-button type="submit" class="cc-button button-secondary right marginRight" ng-disabled="getCreateProjectValidity()" aria-label="Create Project" ng-click="createProject()" id="createProjectBtn">
+                            <md-tooltip md-direction="top">Create Project</md-tooltip>
+                            Create Project
+                        </md-button>
+                        <md-button class="cc-button button-default right" aria-label="Cancel Project" ng-click="resetform()">
+                            <md-tooltip md-direction="top">Discard</md-tooltip>
+                            Discard
+                        </md-button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="show_loading" ng-if="showProjectLoading">
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+</div>

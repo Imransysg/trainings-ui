@@ -1,0 +1,23 @@
+{
+    "trainingsMenu": [{
+            "name": "My Training Lab",
+            "state": "myTrainings",
+            "params": { "reload": false, "notify": false }
+        },
+        {
+            "name": "My Streams",
+            "state": "myStreams",
+            "params": { "reload": false, "notify": false }
+        },
+        {
+            "name": "Credits & Coupons",
+            "state": "creditsCoupons",
+            "params": { "reload": false, "notify": false }
+        },
+        {
+            "name": "Customers",
+            "state": "trainingsCustomer",
+            "params": { "reload": false, "notify": false }
+        }
+    ]
+}

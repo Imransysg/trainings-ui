@@ -1,0 +1,126 @@
+﻿@import '../../../sass/variable';
+@import '../../../sass/mixin';
+@import '../../../sass/type';
+@import '../../../sass/input';
+@import '../../../sass/table';
+md-autocomplete-wrap {
+    box-shadow: none !important;
+}
+
+.searchable_dropdown {
+    position: relative;
+    .dropdown_icon {
+        position: absolute;
+        right: 1px;
+        top: 1px;
+        height: 100%;
+        width: 30px;
+        background: #e3ebf1;
+        border-radius: 0 5px 5px 0;
+        -o-border-radius: 0 5px 5px 0;
+        -webkit-border-radius: 0 5px 5px 0;
+        -moz-border-radius: 0 5px 5px 0;
+        &::after {
+            position: absolute;
+            left: 50%;
+            content: '\25BC';
+            display: block;
+            speak: none;
+            transform: scaleY(0.6) scaleX(0.8) translate(-50%, 0);
+            -o-transform: scaleY(0.6) scaleX(0.8) translate(-50%, 0);
+            -webkit-transform: scaleY(0.6) scaleX(0.8) translate(-50%, 0);
+            -moz-transform: scaleY(0.6) scaleX(0.8) translate(-50%, 0);
+            top: 16%;
+            font-size: 18px;
+            color: #007cf0;
+        }
+    }
+}
+
+md-radio-button.md-default-theme .md-on,
+md-radio-button .md-on {
+    background-color: rgb(255, 255, 255);
+}
+
+md-radio-button.md-default-theme.md-checked .md-off,
+md-radio-button.md-checked .md-off {
+    border-color: rgb(0, 124, 240);
+}
+
+md-radio-button .md-off {
+    border-width: 5px;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.marginTop {
+    margin-top: 20px;
+}
+
+.project_created_tooltip {
+    max-width: 208px;
+    width: 100%;
+    display: block;
+    border: 1px solid #f68e55;
+    padding: 10px;
+    @include border-radius(5px);
+    position: relative;
+    font-size: 0.9rem;
+    color: #f68e55;
+    border-left-width: 4px;
+    margin: 14px 0 0;
+    &::before {
+        border-width: 8px;
+        border-style: solid;
+        content: '';
+        border-color: transparent #f68e56 transparent transparent;
+        width: 0;
+        height: 0;
+        position: absolute;
+        left: -20px;
+        top: 50%;
+        margin-top: -8px;
+    }
+}
+
+.existing_project_row {
+    margin: 0 0 10px;
+    position: relative;
+    .doc_brief_des {
+        margin: 0;
+        padding: 0;
+        max-width: 32%;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+    }
+}
+
+.tVersionSelect {
+    .md-select-value {
+        &.md-select-placeholder {
+            padding: 0 30px 0 10px;
+            height: 30px;
+            font-size: 88%;
+            font-weight: 600;
+        }
+    }
+}
+
+md-select.ng-invalid.ng-touched {
+    .md-select-value {
+        color: rgba(0, 0, 0, 0.38) !important;
+    }
+}
+
+md-select:not([disabled]).ng-invalid.ng-touched {
+    .md-select-value {
+        padding-bottom: 0px;
+    }
+}

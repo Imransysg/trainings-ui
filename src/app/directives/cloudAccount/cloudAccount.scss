@@ -1,0 +1,57 @@
+﻿.cloud_account_nav {
+    min-height: 150px;
+    max-height: 285px;
+    padding: 15px 15px 0;
+    margin-bottom: 15px;
+    overflow: hidden;
+    .create_trial_block {
+        width: 120px;
+        height: 120px;
+        background: #f3f9fc;
+        border: 1px dashed #a1a1a1;
+        margin-right: 2.4rem;
+        margin-bottom: 30px;
+        text-align: center;
+        cursor: pointer;
+        float: left;
+        i {
+            font-size: 70px;
+            color: #a8b2b7;
+        }
+        p {
+            margin: 0;
+            bottom: 3px;
+            position: relative;
+        }
+        &.cloud_tile {
+            border: 1px solid #a1a1a1;
+            position: relative;
+            font-size: 14px;
+            p {
+                margin: 14px 0 0;
+            }
+        }
+    }
+}
+
+.create_new_cloud_header {
+    margin-bottom: 10px;
+    h4 {
+        display: inline-block;
+        margin-top: 5px;
+        margin-bottom: 0;
+    }
+    button {
+        float: right;
+        margin-right: 0;
+        margin-bottom: 0;
+        min-width: 70px;
+    }
+}
+
+.selected_cloud_acc {
+    position: absolute;
+    top: -18px;
+    right: -20px;
+    z-index: 1;
+}

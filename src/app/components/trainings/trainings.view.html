@@ -1,0 +1,16 @@
+<div id="page-wrapper">
+    <toolbar></toolbar>
+    <div id="content-wrapper" layout="row">
+        <sidemenu ng-if="!vm.sidebarShown.flag" id="sidebar-wrapper" layout="column"></sidemenu>
+        <md-content class="main-container trialContainer" id="trailContent" layout-align="center center" layout-padding ng-class="{'paddingLeft': vm.sidebarShown.flag}">
+            <md-nav-bar ng-if="!vm.sidebarShown.flag" md-selected-nav-item="vm.activeNavMenu" nav-bar-aria-label="navigation links" class="display-block menu-nav-bar">
+                <md-nav-item ng-repeat="menu in vm.trainingMenu" md-nav-sref="{{vm.parentState}}.{{menu.state}}" sref-opts="menu.params" name="{{menu.state}}">
+                    {{menu.name}}
+                </md-nav-item>
+            </md-nav-bar>
+            <!-- ui-view for child states starts here -->
+            <ui-view class="display-block content_area" ng-class="{'noPadding height100':vm.sidebarShown.flag}"></ui-view>
+            <!-- ui-view for child states ends here -->
+        </md-content>
+    </div>
+</div>

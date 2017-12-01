@@ -1,0 +1,240 @@
+﻿<div class="training_lab_basic_detail_form height100">
+    <div class="signup_form height100">
+        <div class="signup_form_main position-relative height100">
+            <!-- <div class="know_more_row stack_know_more_row cursor-pointer position-absolute">
+                <span class="know_more right cursor-pointer" ng-click="vm.helpSection('basicDetail');">
+                    <b>Veiw Help Guide</b>
+                </span>
+                <div class="clearfix"></div>
+            </div> -->
+            <form name="trainingCurriculumDetail" class="height100">
+                <div layout="row" class="height100">
+                    <div class="left_curriculum height100" flex="20">
+                        <md-menu>
+                            <md-button class="button-primary add_section" ng-click="$mdMenu.open($event)">
+                                <md-tooltip md-direction="top">Add section</md-tooltip>
+                                <i class="material-icons">add_circle_outline</i><span>Add section</span>
+                            </md-button>
+                            <md-menu-content width="3">
+                                <md-menu-item ng-repeat="sectionSel in vm.sectionAvaliableList">
+                                    <md-button ng-click="vm.addSectionFn(sectionSel)"> <span md-menu-align-target></span>{{sectionSel}}</md-button>
+                                </md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
+                        <div class="selected_section_main">
+                            <ul class="noPadding noMargin" dnd-list="vm.trainingsModel.sections">
+                                <li class="display-block width100 selected_section" ng-repeat="section in vm.trainingsModel.sections" dnd-draggable="section" dnd-moved="vm.trainingsModel.sections.splice($index, 1)" dnd-effect-allowed="move" dnd-selected="vm.selectedSection = section"
+                                    ng-class="{'selected_section_active': vm.selectedSection.id === section.id}">
+                                    <label class="display-block">Section {{$index + 1}}</label>
+                                    <span class="display-block position-relative section_title_outer">
+                                        <b class="delete_icon position-absolute" ng-click="vm.confirmationPop('deleteSection')"><i class="material-icons">delete</i></b>
+                                        <span class="display-block section_title_span" ng-click="vm.displaySelectedSection(section)">{{section.title}}</span>
+                                    </span>
+                                </li>
+                            </ul>
+                            <!-- <div class="display-block width100 selected_section" ng-repeat="section in vm.trainingsModel.sections track by $index" ng-class="{'selected_section_active': vm.selectedSection.id === section.id}">
+                                <label class="display-block">Section {{$index + 1}}</label>
+                                <span class="display-block" ng-click="vm.displaySelectedSection(section)">{{section.title}}</span>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="training_content_right noPadding position-relative height100" flex>
+                        <div class="training_main_section">
+                            <div class="training_form_content welcome_section_main" ng-if="vm.selectedSection && vm.selectedSection !==''">
+                                <div class="section_title">
+                                    <md-input-container class="md-block noMargin">
+                                        <input type="text" ng-model="vm.selectedSection.title" name="SectionTitle" />
+                                    </md-input-container>
+                                </div>
+                                <div class="configure_project">
+                                    <h4>Section Settings</h4>
+                                    <div class="section_setting_categories">
+                                        <md-nav-bar class="sectionCategory_nav" md-selected-nav-item="vm.currentSectionCategory" nav-bar-aria-label="Section navigation" md-no-ink-bar="vm.disableInkBar">
+                                            <md-nav-item md-nav-click="goto('project')" name="project">
+                                                Add Project
+                                            </md-nav-item>
+                                            <md-nav-item md-nav-click="goto('workspace')" name="workspace">
+                                                Add Workspace
+                                            </md-nav-item>
+                                            <md-nav-item md-nav-click="goto('confirmationSteps')" name="confirmationSteps">
+                                                Add Confirmation Steps
+                                            </md-nav-item>
+                                        </md-nav-bar>
+                                    </div>
+                                    <div class="add_project_block sectionSetting_block" ng-if="vm.currentSectionCategory ==='project'">
+                                        <div class="configure_project_toggle">
+                                            <span>Do You Want to configure project for the training lab?</span>
+                                            <md-switch ng-model="vm.selectedSection.configureProjectFlag" aria-label="SectionconfigureProjectFlag">
+                                            </md-switch>
+                                        </div>
+                                        <div class="add_project_main" ng-if="vm.selectedSection.configureProjectFlag">
+                                            <div class="add_project_dropdown signup_col paddingLeft">
+                                                <md-input-container class="md-block noMargin">
+                                                    <md-select class="select_new" ng-model="vm.selectedSection.project.projectInfo.project_id" name="trainingsCategory" required placeholder="Select project" ng-change="vm.projectOptionSelection(vm.selectedSection.project.projectInfo.project_id, vm.selectedSection)">
+                                                        <md-option ng-repeat="project in vm.projectDetailsObj.savedProjects" ng-value="project.project_id">{{project.projectName}}</md-option>
+                                                    </md-select>
+                                                </md-input-container>
+                                            </div>
+                                            <div class="add_project_dropdown signup_col paddingRight" ng-if="vm.selectedSection.project.projectInfo.project_id && vm.selectedSection.project.projectInfo.project_id !== '' && vm.selectedSection.project.projectInfo.project_id !== 'createNewProject'">
+                                                <md-input-container class="md-block noMargin">
+                                                    <md-select class="select_new" ng-model="vm.selectedVariable" name="trainingsCategory" required placeholder="Select Variables from the project" ng-change="vm.addProjectVariable(vm.selectedVariable, vm.selectedSection)">
+                                                        <md-option ng-repeat="category in vm.sectionAvaliableList track by $index" ng-value="category">{{category}}</md-option>
+                                                    </md-select>
+                                                </md-input-container>
+                                            </div>
+                                            <div class="project_variables_list left width100" ng-if="vm.selectedSection.project.variables">
+                                                <div class="md-3-line project_variable_row position-relative" ng-repeat="variable in vm.selectedSection.project.variables track by $index">
+                                                    <i class="material-icons position-absolute" ng-click="vm.removeVariableFromList(variable, vm.selectedSection.projectInfo.variables)">cancel</i>
+                                                    <div class="variable_left" layout="row">
+                                                        <label flex="35">{{variable.key}}</label>
+                                                        <input flex="65" type="text" name="variableValue{{$index}}" ng-model="variable.value" placeholder="Enter Value" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="add_workspace_block sectionSetting_block" ng-if="vm.currentSectionCategory === 'workspace'">
+                                        <ul dnd-list="vm.selectedSection.workspaces" class="workspace_ul">
+                                            <li ng-repeat="workspace in vm.selectedSection.workspaces" dnd-draggable="workspace" dnd-moved="vm.selectedSection.workspaces.splice($index, 1)" class="workspace_li">
+                                                <dnd-nodrag class="display-block">
+                                                    <div class="subsection_title_row">
+                                                        <div class="actionIcons left">
+                                                            <div dnd-handle class="handle right drag_handle">
+                                                                <span>
+                                                                                <b>&nbsp;</b>
+                                                                                <b>&nbsp;</b>
+                                                                                <b>&nbsp;</b>
+                                                                            </span>
+                                                                <span>
+                                                                                <b>&nbsp;</b>
+                                                                                <b>&nbsp;</b>
+                                                                                <b>&nbsp;</b>
+                                                                            </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="workspace_content">
+                                                            <i class="material-icons workspace_cancel right" ng-click="vm.deleteWorkspace(workspace);">cancel</i>
+                                                            <div class="workspace_content_left">
+                                                                <md-input-container class="md-block signup_col paddingLeft noMargin workspace_type">
+                                                                    <md-select class="select_new" ng-model="workspace.type" name="workspaceType{{$index}}" required placeholder="Select workspace type">
+                                                                        <md-option ng-repeat="type in vm.sectionAvaliableList" ng-value="project">{{type}}</md-option>
+                                                                    </md-select>
+                                                                </md-input-container>
+                                                                <md-input-container class="md-block signup_col paddingRight noMargin workspace_name">
+                                                                    <label class="display-none"></label>
+                                                                    <input type="text" ng-model="workspace.name" name="workspaceName{{$index}}" placeholder="Enter Workspace Name..." />
+                                                                </md-input-container>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </dnd-nodrag>
+                                            </li>
+                                        </ul>
+                                        <span class="add_workspace_link display-inline-block" ng-click="vm.addWorkspace();"><i class="material-icons display-inline-block">add_circle_outline</i>&nbsp;<b class="display-inline-block">Add Workspace</b></span>
+                                    </div>
+                                    <div class="add_confirmation_steps sectionSetting_block" ng-if="vm.currentSectionCategory === 'confirmationSteps'">
+                                        <md-switch md-invert md-no-ink="false" ng-model="vm.selectedSection.confirmationSteps.ConfirmationStepFlag" aria-label="Finished?">
+                                            Do you want to add confirmation step?
+                                        </md-switch>
+                                        <p class="noMargin noPadding">Adding confirmation step would restrict user to move into next step without completing the desired task.</p>
+                                    </div>
+                                </div>
+                                <div class="content_builder">
+                                    <h4>Content Builder</h4>
+                                    <div class="content_builder_cntnt" ng-if="vm.selectedSection.secName !== 'ContentSection' && vm.selectedSection.secName !== 'HookSection'">
+                                        <div class="training_html_editor">
+                                            <text-angular ng-model="vm.selectedSection.contentBuilder[0].stepContent"></text-angular>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <ul dnd-list="vm.selectedSection.contentBuilder" class="content_builder_cntnt_ul" ng-if="vm.selectedSection.secName === 'ContentSection'">
+                                        <li ng-repeat="step in vm.selectedSection.contentBuilder" dnd-draggable="step" dnd-moved="vm.selectedSection.contentBuilder.splice($index, 1)" class="content_builder_cntnt">
+                                            <dnd-nodrag class="display-block">
+                                                <div class="subsection_title_row">
+                                                    <div class="actionIcons right">
+                                                        <span class="right accordian_icon" ng-click="vm.toggleStep(step)">
+                                                            <i class="material-icons">arrow_drop_down_circle</i>
+                                                        </span>
+                                                        <span class="right delete_step" ng-click="vm.confirmationPop('deleteStep', step)">
+                                                                <i class="material-icons">cancel</i>
+                                                            </span>
+                                                        <div dnd-handle class="handle right drag_handle">
+                                                            <span>
+                                                                    <b>&nbsp;</b>
+                                                                    <b>&nbsp;</b>
+                                                                    <b>&nbsp;</b>
+                                                                </span>
+                                                            <span>
+                                                                    <b>&nbsp;</b>
+                                                                    <b>&nbsp;</b>
+                                                                    <b>&nbsp;</b>
+                                                                </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="subsection_title">
+                                                        <md-input-container class="md-block noMargin">
+                                                            <input type="text" ng-model="step.title" name="subSectionTitle{{$index}}" placeholder="Enter Subsection title..." />
+                                                        </md-input-container>
+                                                    </div>
+                                                </div>
+                                                <div class="accordion_content" ng-class="{'accordion_active': step.expandable}">
+                                                    <div class="content_radio_row">
+                                                        <md-radio-group class="left" ng-model="step.confirmationType" ng-change="vm.confirmationPop('changeEditorForStep', step.confirmationType, $index)">
+                                                            <md-radio-button class="left" ng-repeat="stepOption in vm.step.contentOption" value="{{stepOption.id}}">{{stepOption.value}}</md-radio-button>
+                                                        </md-radio-group>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="training_html_editor" ng-show="step.contentType === 'htmlEditor'">
+                                                        <text-angular ng-model="step.stepContent"></text-angular>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="training_markdown_editor" ng-show="step.contentType === 'markdownEditor'">
+                                                        <textarea ng-model="step.stepContent" name="markdownEditor{{$index}}" markdown-editor="{'iconlibrary': 'fa', addExtraButtons: true, fullscreen: false}" rows="10"></textarea>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="training_uploadfile_sec" ng-show="step.contentType === 'uploadImagesVideo'">
+                                                        <div class="trainingBtnWrapper">
+                                                            <div class="section_upload_button">
+                                                                <div class="section_upload_button_inner position-relative">
+                                                                    <input type="file" id="Sectionupload" onchange="angular.element(this).scope().vm.stepUploadDocument(this,'Sectionupload')" />
+                                                                    <md-button class="browse_files_button button-secondary">Browse Files</md-button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="section_upload_file position-relative" ng-if="step.uploadDocument">
+                                                                <i class="material-icons clear_icon cursor-pointer position-absolute" ng-click="vm.removeFile(step)">clear</i>
+                                                                <div class="section_file_left">
+                                                                    <input type="text" name="SectionUploadFile" ng-model="step.uploadDocument.title" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </dnd-nodrag>
+                                        </li>
+                                    </ul>
+                                    <div class="hook_section" ng-if="vm.selectedSection.secName === 'HookSection'">
+                                        <ul>
+                                            <li ng-repeat="item in vm.hooks">
+                                                <div id="{{'hooks_'+($index+1)}}">
+                                                    {{vm.addHooks($index+1,item)}}
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="add_new_step text-center" ng-if="vm.selectedSection.secName !== 'WelcomeSection'">
+                                        <button class="add_step" ng-click="vm.addNewStep(vm.selectedSection.secName)"><i class="material-icons">add_circle_outline</i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="show_loading " ng-if="vm.showTrainingCurriculumLoading">
+        <md-progress-circular md-mode="indeterminate "></md-progress-circular>
+    </div>
+</div>

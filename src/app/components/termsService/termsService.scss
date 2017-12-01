@@ -1,0 +1,14 @@
+@import '../../../sass/variable';
+@import '../../../sass/mixin';
+@import '../../../sass/type';
+@import '../../../sass/input';
+.terms_service {
+    .terms-service_wrapper {
+        max-width: 1100px;
+        margin: 0 auto;
+        background: #f1f1f1;
+        padding: 20px;
+        border: 1px solid #ccc;
+        width: 100%;
+    }
+}
